@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -15,16 +16,56 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Material App Bar'),
-        ),
-        body: const Center(
-          child: Text('Hello World'),
-        ),
-      ),
+      home: Home(),
     );
   }
+}
+
+class Home extends  StatefulWidget{
+
+  const Home({
+    Key? key,
+
+  }) : super(key: key);
+  
+  @override
+  State<Home> createState() => _HomeState(); 
+  
+}
+
+class _HomeState extends State<Home>{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Gestión sanitaria"),
+      ),
+      body: FutureBuilder(
+        future: getRegistro(), 
+        builder: ((context, snapshot){
+          return ListView.builder(
+            itemCount: snapshot.data?.length,
+            itemBuilder: (context, index){
+              final userData= snapshot.data?[index];
+              if(userData != null){
+                return ListTile(
+                   title: Text(userData['name']),subtitle: Text('${userData['lastname']} - ${userData['movil']} - ${userData['email']}'),
+
+                );
+              } else{
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            },
+            );
+        })
+        ),
+    );
+   
+  }
+
+
 }

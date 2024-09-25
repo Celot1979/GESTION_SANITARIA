@@ -9,6 +9,12 @@ class add_registro extends StatefulWidget {
 }
 
 class _add_registroState extends State<add_registro> {
+  //Controladores para guardar la info de los registros 
+  TextEditingController nameControler = TextEditingController(text: " ");
+  TextEditingController lastControler = TextEditingController(text: " ");
+  TextEditingController movilControler = TextEditingController(text: " ");
+  TextEditingController emailControler = TextEditingController(text: " ");
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,22 +35,26 @@ class _add_registroState extends State<add_registro> {
         children: [
           const SizedBox(height: 20),
           _buildTextField(
+            controller: nameControler,
             hintText: "add name",
             prefixIcon: Icons.person_outline,
           ),
           const SizedBox(height: 16),
           _buildTextField(
+            controller: lastControler,
             hintText: "add lastaname",
             prefixIcon: Icons.person_outline,
           ),
           const SizedBox(height: 16),
           _buildTextField(
+            controller: movilControler,
             hintText: "add mobile phone number ",
             prefixIcon: Icons.phone,
             keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 16),
           _buildTextField(
+            controller: emailControler,
             hintText: "add email address",
             prefixIcon: Icons.email,
             keyboardType: TextInputType.emailAddress,
@@ -59,10 +69,11 @@ class _add_registroState extends State<add_registro> {
   }
 
   //Está función personalizada del Widget es para darle una apariencia más profesional y una mejor experiencia al  usuario.
-  Widget _buildTextField({
+ Widget _buildTextField({
     required String hintText,
     required IconData prefixIcon,
     TextInputType keyboardType = TextInputType.text,
+    required TextEditingController controller,
   }) {
     return TextField(
       decoration: InputDecoration(
@@ -70,11 +81,13 @@ class _add_registroState extends State<add_registro> {
         prefixIcon: Icon(prefixIcon),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
+
         ),
         filled: true,
         fillColor: Colors.grey[200],
       ),
       keyboardType: keyboardType,
+      controller: controller, // Pasa el controlador al TextField
     );
   }
 }

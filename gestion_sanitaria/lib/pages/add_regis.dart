@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 
 class add_registro extends StatefulWidget {
   const add_registro({
@@ -60,7 +61,12 @@ class _add_registroState extends State<add_registro> {
             keyboardType: TextInputType.emailAddress,
           ),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () async{
+              await registrarUsuario(nameControler.text,lastControler.text,movilControler.text,emailControler.text);
+              
+
+
+            },
             child: const Text("SAVE"),
           ),
         ],

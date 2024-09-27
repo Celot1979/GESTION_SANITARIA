@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:gestion_sanitaria/pages/edit_regis%20copy.dart';
 import 'firebase_options.dart';
 //Importaciones de las páginas de
 import 'package:gestion_sanitaria/pages/add_regis.dart';
@@ -23,7 +24,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes:{
         '/': (context) => const Home(),
-         '/add': (context) => const add_registro(),
+        '/add': (context) => const add_registro(),
+        '/edit': (context) => const EditNamePage(),
         
       },
     );

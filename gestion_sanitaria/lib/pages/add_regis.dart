@@ -62,7 +62,9 @@ class _add_registroState extends State<add_registro> {
           ),
           ElevatedButton(
             onPressed: () async{
-              await addRegistro(nameControler.text,lastControler.text,movilControler.text,emailControler.text);
+              await addRegistro(nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
+                Navigator.pop(context);
+              });
               
 
 

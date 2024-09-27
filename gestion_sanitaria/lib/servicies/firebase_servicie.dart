@@ -19,44 +19,6 @@ Future <List> getRegistro() async {
 }
 
 
-/*Future <void> addRegistro(String name,String lastaname,String movil,String email) async {
-  await db.collection("registro").add({"name":name, "lastaname":lastaname, "movil":movil, "email":email});
-}*/
-Future<void> registrarUsuario(
-  String nombre,
-  String apellidos,
-  String movil,
-  String email,
-) async {
-  try {
-    // Referencia a la colección en Firebase
-    final collection = FirebaseFirestore.instance.collection('registro');
-
-    // Crear un mapa con los datos a guardar
-    final usuario = {
-      'nombre': nombre,
-      'apellidos': apellidos,
-      'movil': movil,
-      'email': email,
-    };
-
-    // Agregar el documento a la colección
-    await collection.add(usuario);
-    
-
-    // Mostrar una notificación de éxito
-    Fluttertoast.showToast(
-      msg: "Usuario registrado exitosamente",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-    );
-  } catch (e) {
-    print('Error al registrar usuario: $e');
-    // Mostrar una notificación de error (opcional)
-    Fluttertoast.showToast(
-      msg: "Error al registrar usuario",
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-    );
-  }
+Future <void> addRegistro(String name,String lastname,String movil,String email) async {
+  await db.collection("registro").add({"name":name, "lastname":lastname, "movil":movil, "email":email});
 }

@@ -69,7 +69,9 @@ class _EditNamePageState extends State<EditNamePage> {
           ),
           ElevatedButton(
             onPressed: () async{
-              await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text);
+              await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
+                Navigator.pop(context);
+              });
               
             },
             child: const Text("UPDATE"),

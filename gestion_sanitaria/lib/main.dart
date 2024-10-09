@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:gestion_sanitaria/pages/edit_regis%20copy.dart';
+import 'package:gestion_sanitaria/pages/edit_regis.dart';
 import 'firebase_options.dart';
 //Importaciones de las páginas de
 import 'package:gestion_sanitaria/pages/add_regis.dart';

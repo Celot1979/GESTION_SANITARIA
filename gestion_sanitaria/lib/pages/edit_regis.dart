@@ -18,10 +18,17 @@ class _EditNamePageState extends State<EditNamePage> {
 
   @override
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
+    nameControler.text = arguments['name']?.data;
+    lastControler.text = arguments['lastname']?.data;
+    movilControler.text = arguments['movil']?.data;
+    emailControler = arguments['email']?.data;
+
+    //['lastname'];['movil'];['email'];
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "ADD RECORD",
+          "EDIT RECORD",
           style: TextStyle(
             fontSize:20,
             fontWeight: FontWeight.bold,
@@ -37,26 +44,26 @@ class _EditNamePageState extends State<EditNamePage> {
           const SizedBox(height: 20),
           _buildTextField(
             controller: nameControler,
-            hintText: "add name",
+            hintText: "Enter name modification",
             prefixIcon: Icons.person_outline,
           ),
           const SizedBox(height: 16),
           _buildTextField(
             controller: lastControler,
-            hintText: "add lastaname",
+            hintText: "Enter the last name modification",
             prefixIcon: Icons.person_outline,
           ),
           const SizedBox(height: 16),
           _buildTextField(
             controller: movilControler,
-            hintText: "add mobile phone number ",
+            hintText: "Enter the modification of the mobile numbers ",
             prefixIcon: Icons.phone,
             keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 16),
           _buildTextField(
             controller: emailControler,
-            hintText: "add email address",
+            hintText: "Enter the email address modification",
             prefixIcon: Icons.email,
             keyboardType: TextInputType.emailAddress,
           ),
@@ -69,7 +76,7 @@ class _EditNamePageState extends State<EditNamePage> {
 
 
             },
-            child: const Text("SAVE"),
+            child: const Text("UPDATE"),
           ),
         ],
       ),

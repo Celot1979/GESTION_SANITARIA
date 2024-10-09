@@ -36,6 +36,14 @@ class _HomeState extends State<Home>{
               if(userData != null){
                 return ListTile(
                    title: Text(userData['name']),subtitle: Text('${userData['lastname']} - ${userData['movil']} - ${userData['email']}'),
+                   onTap:((){
+                    Navigator.pushNamed(context, "/edit", arguments: {
+                      "name": Text(snapshot.data?[index]['name']),
+                      "lastname": Text(snapshot.data?[index]['lastname']),
+                      "movil": Text(snapshot.data?[index]['movil']),
+                      "email": Text(snapshot.data?[index]['email']),                      
+                      });
+                   }) ,
                 );
                 
 

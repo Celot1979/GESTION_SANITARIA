@@ -22,7 +22,7 @@ class _EditNamePageState extends State<EditNamePage> {
     nameControler.text = arguments['name']?.data;
     lastControler.text = arguments['lastname']?.data;
     movilControler.text = arguments['movil']?.data;
-    emailControler = arguments['email']?.data;
+    emailControler.text = arguments['email']?.data;
 
     //['lastname'];['movil'];['email'];
     return Scaffold(
@@ -69,12 +69,8 @@ class _EditNamePageState extends State<EditNamePage> {
           ),
           ElevatedButton(
             onPressed: () async{
-              await addRegistro(nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
-                Navigator.pop(context);
-              });
+              await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text);
               
-
-
             },
             child: const Text("UPDATE"),
           ),

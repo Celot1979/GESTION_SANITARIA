@@ -41,7 +41,8 @@ class _HomeState extends State<Home>{
                       "name": Text(snapshot.data?[index]['name']),
                       "lastname": Text(snapshot.data?[index]['lastname']),
                       "movil": Text(snapshot.data?[index]['movil']),
-                      "email": Text(snapshot.data?[index]['email']),                      
+                      "email": Text(snapshot.data?[index]['email']),
+                      "uid": Text(snapshot.data?[index]['uid']),                       
                       });
                    }) ,
                 );

@@ -12,14 +12,25 @@ Future <List> getRegistro() async {
   CollectionReference collectionReferenceRegistro = db.collection("registro");
   QuerySnapshot queryRegistro = await collectionReferenceRegistro.get();
   for (var documento in queryRegistro.docs) {
-    registro.add(documento.data());
-
+    final Map<String, dynamic> data = documento.data() as Map<String, dynamic>;
+    final person = {
+      "name": data["name"],
+      "lastname": data["lastname"],
+      "movil": data["movil"],
+      "email": data["email"],
+      "uid": documento.id,
+    };
+    registro.add(person);
   }
 
   return registro;
 }
 
-
+//Añadir Registros
 Future <void> addRegistro(String name,String lastname,String movil,String email) async {
   await db.collection("registro").add({"name":name, "lastname":lastname, "movil":movil, "email":email});
+}
+//Actualizar Registros
+Future <void> updateRegistro(String uid,String newname,String newlastname,String newmovil,String newemail) async {
+  await db.collection("registro").doc(uid).set({"name":newname, "lastname":newlastname, "movil":newmovil, "email":newemail});
 }

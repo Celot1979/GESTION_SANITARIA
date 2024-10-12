@@ -34,23 +34,43 @@ class _HomeState extends State<Home>{
               final userData= snapshot.data?[index];
               if(userData != null){
                 return Dismissible(
-                  direction: DismissDirection.endToStart,
+                  onDismissed: (direction) async{
+                    //Se inicializa el widget para llamar a la función deleteRegistro de firebase_servicie.dart
+                    
+                    await deleteRegistro(userData['uid']);
+                  },
+                  confirmDismiss: (direction) async {
+                    bool result = await showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Confirmar eliminación',style: TextStyle(color: Colors.green)),
+                          content: Text('¿Estás seguro de que quieres eliminar el registro de ${userData['name']}?'),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text('Cancelar', style: TextStyle(color: Colors.red)),
+                              onPressed: () => Navigator.pop(context, false),
+                            ),
+                            TextButton(
+                              child: Text('Eliminar'),
+                              onPressed: () {
+                                Navigator.pop(context, true);
+                              }
+                            ),
+                          ],
+                        );
+                      },
+                    ) ?? false;
+                    return result;
+                  },
                   background: Container(
                     color: Colors.red,
                     alignment: Alignment.centerRight,
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: const Icon(Icons.delete, color: Colors.white),
-                   
-                  ),
+                    child: const Icon(Icons.delete),
+                    ),
                   key: Key(snapshot.data?[index]['uid']),
                   child: ListTile(
                      title: Text(userData['name']),subtitle: Text('${userData['lastname']} - ${userData['movil']} - ${userData['email']}'),
-                     trailing: IconButton(icon: Icon(Icons.delete),
-                     onPressed: () {
-                      // Implementación para eliminar el registro
-              
-                      },
-                      ),
                      onTap:(() async{
                       await Navigator.pushNamed(context, "/edit", arguments: {
                         "name": Text(snapshot.data?[index]['name']),

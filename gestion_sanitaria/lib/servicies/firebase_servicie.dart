@@ -34,3 +34,7 @@ Future <void> addRegistro(String name,String lastname,String movil,String email)
 Future <void> updateRegistro(String uid,String newname,String newlastname,String newmovil,String newemail) async {
   await db.collection("registro").doc(uid).set({"name":newname, "lastname":newlastname, "movil":newmovil, "email":newemail});
 }
+//Eliminar Registros
+Future <void> deleteRegistro(String uid) async {
+  await db.collection("registro").doc(uid).delete();
+}

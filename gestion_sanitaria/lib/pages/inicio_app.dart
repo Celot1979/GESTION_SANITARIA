@@ -17,6 +17,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //no está funcionando
         title: const Text(
           "HEALTH MANAGEMENT",
           style: TextStyle(

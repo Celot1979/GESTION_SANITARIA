@@ -4,7 +4,7 @@ import 'package:gestion_sanitaria/pages/edit_regis.dart';
 import 'firebase_options.dart';
 //Importaciones de las páginas de
 import 'package:gestion_sanitaria/pages/add_regis.dart';
-import 'package:gestion_sanitaria/pages/home_page.dart';
+import 'package:gestion_sanitaria/pages/inicio_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

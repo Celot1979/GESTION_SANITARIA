@@ -1,17 +1,105 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
+//import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 
-class Home_read extends  StatefulWidget{
-  const Home_read({
+class Home extends  StatefulWidget{
+  const Home({
     super.key,
   });
   @override
-  State<Home_read> createState() => _Home_readState(); 
+  State<Home> createState() => _HomeState(); 
 }
+class _HomeState extends State<Home> {
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
-class _Home_readState extends State<Home_read>{
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "HEALTH MANAGEMENT",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: Colors.blue,
+        elevation: 2,
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextFormField(
+                  controller: _emailController,
+                  decoration: const InputDecoration(
+                    labelText: 'Correo electrónico',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingrese su correo electrónico';
+                    }
+                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+                      return 'Por favor, ingrese un correo electrónico válido';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 16),
+                TextFormField(
+                  controller: _passwordController,
+                  obscureText: true,
+                  decoration: const InputDecoration(
+                    labelText: 'Contraseña',
+                    border: OutlineInputBorder(),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Por favor, ingrese su contraseña';
+                    }
+                    if (value.length < 6) {
+                      return 'La contraseña debe tener al menos 6 caracteres';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      // Aquí puedes agregar la lógica para iniciar sesión
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Iniciando sesión...')),
+                      );
+                    }
+                  },
+                  child: const Text('Iniciar sesión'),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+}
+//class _HomeState extends State<Home>{
+  
+  /*Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -108,4 +196,4 @@ class _Home_readState extends State<Home_read>{
    
   }
   
-}
+}*/

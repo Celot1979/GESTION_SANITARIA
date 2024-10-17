@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_sanitaria/servicies/authenticate.dart';
+//import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 //import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 
 class Home extends  StatefulWidget{
@@ -8,95 +10,86 @@ class Home extends  StatefulWidget{
   @override
   State<Home> createState() => _HomeState(); 
 }
-class _HomeState extends State<Home> {
-  final _formKey = GlobalKey<FormState>();
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
+class _HomeState extends State<Home>{
+  
 
+  TextEditingController movilControler = TextEditingController(text: " ");
+  TextEditingController emailControler = TextEditingController(text: " ");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //no está funcionando
         title: const Text(
           "HEALTH MANAGEMENT",
           style: TextStyle(
-            fontSize: 20,
+            fontSize:20,
             fontWeight: FontWeight.bold,
           ),
-        ),
-        backgroundColor: Colors.blue,
-        elevation: 2,
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextFormField(
-                  controller: _emailController,
-                  decoration: const InputDecoration(
-                    labelText: 'Correo electrónico',
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese su correo electrónico';
-                    }
-                    if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
-                      return 'Por favor, ingrese un correo electrónico válido';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Contraseña',
-                    border: OutlineInputBorder(),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese su contraseña';
-                    }
-                    if (value.length < 6) {
-                      return 'La contraseña debe tener al menos 6 caracteres';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 24),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                      // Aquí puedes agregar la lógica para iniciar sesión
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Iniciando sesión...')),
-                      );
-                    }
-                  },
-                  child: const Text('Iniciar sesión'),
-                ),
-              ],
-            ),
           ),
-        ),
+          backgroundColor: Colors.blue,
+          elevation: 2,
+          centerTitle: true,
+           ),
+      body:Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+        const SizedBox(height: 20),
+        const SizedBox(width: 16),
+          _buildTextField(
+            controller: emailControler,
+            hintText: "add email address",
+            prefixIcon: Icons.email,
+            keyboardType: TextInputType.emailAddress,
+          ),
+          
+          const SizedBox(height: 16),
+          _buildTextField(
+            controller: movilControler,
+            hintText: "add mobile phone number ",
+            prefixIcon: Icons.phone,
+            keyboardType: TextInputType.phone,
+          ),
+          
+          ElevatedButton(
+            onPressed: () async{
+              print("Realizado");
+              /*await loger(emailControler.text,  movilControler.text ).then((_){
+                Navigator.pop(context);
+              });*/
+              await validate_data(emailControler.text, movilControler.text).then((_){
+                Navigator.pop(context);
+              });;
+
+
+            },
+            child: const Text("SAVE"),
+          ),
+        ],
       ),
     );
   }
+   Widget _buildTextField({
+    required String hintText,
+    required IconData prefixIcon,
+    TextInputType keyboardType = TextInputType.text,
+    required TextEditingController controller,
+  }) {
+    return TextField(
+      decoration: InputDecoration(
+        hintText: hintText,
+        prefixIcon: Icon(prefixIcon),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
 
-  @override
-  void dispose() {
-    _emailController.dispose();
-    _passwordController.dispose();
-    super.dispose();
+        ),
+        filled: true,
+        fillColor: Colors.grey[200],
+      ),
+      keyboardType: keyboardType,
+      controller: controller, // Pasa el controlador al TextField
+    );
   }
+  
 }
 //class _HomeState extends State<Home>{
   

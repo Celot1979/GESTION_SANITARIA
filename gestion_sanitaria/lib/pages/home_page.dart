@@ -52,7 +52,7 @@ class _Home_readState extends State<Home_read>{
                               onPressed: () => Navigator.pop(context, false),
                             ),
                             TextButton(
-                              child: Text('Eliminar'),
+                              child: const Text('Eliminar'),
                               onPressed: () {
                                 Navigator.pop(context, true);
                               }

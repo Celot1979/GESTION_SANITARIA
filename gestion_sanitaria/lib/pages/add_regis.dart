@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 
-class add_registro extends StatefulWidget {
-  const add_registro({
+class add_Registro extends StatefulWidget {
+  const add_Registro({
     super.key,
   });
   @override
-  State<add_registro> createState() => _add_registroState();
+  State<add_Registro> createState() => _add_RegistroState();
 }
 
-class _add_registroState extends State<add_registro> {
+class _add_RegistroState extends State<add_Registro> {
   //Controladores para guardar la info de los registros 
   TextEditingController nameControler = TextEditingController(text: " ");
   TextEditingController lastControler = TextEditingController(text: " ");

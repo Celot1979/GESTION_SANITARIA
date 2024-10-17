@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 // ignore: unused_import
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -38,3 +39,6 @@ Future <void> updateRegistro(String uid,String newname,String newlastname,String
 Future <void> deleteRegistro(String uid) async {
   await db.collection("registro").doc(uid).delete();
 }
+
+
+

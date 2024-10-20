@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_sanitaria/servicies/authenticate.dart';
-//import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
-//import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
+import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
+import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
-class Home extends  StatefulWidget{
+
+
+class Home extends StatefulWidget {
   const Home({
     super.key,
   });
   @override
-  State<Home> createState() => _HomeState(); 
+  State<Home> createState() => _HomeState();
 }
-class _HomeState extends State<Home>{
-  
 
+class _HomeState extends State<Home> {
+  TextEditingController nameControler = TextEditingController(text: " ");
   TextEditingController movilControler = TextEditingController(text: " ");
   TextEditingController emailControler = TextEditingController(text: " ");
   @override
@@ -22,53 +23,55 @@ class _HomeState extends State<Home>{
         title: const Text(
           "HEALTH MANAGEMENT",
           style: TextStyle(
-            fontSize:20,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
-          ),
-          backgroundColor: Colors.blue,
-          elevation: 2,
-          centerTitle: true,
-           ),
-      body:Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-        const SizedBox(height: 20),
-        const SizedBox(width: 16),
-          _buildTextField(
-            controller: emailControler,
-            hintText: "add email address",
-            prefixIcon: Icons.email,
-            keyboardType: TextInputType.emailAddress,
-          ),
-          
-          const SizedBox(height: 16),
-          _buildTextField(
-            controller: movilControler,
-            hintText: "add mobile phone number ",
-            prefixIcon: Icons.phone,
-            keyboardType: TextInputType.phone,
-          ),
-          
-          ElevatedButton(
-            onPressed: () async{
-              print("Realizado");
-              /*await loger(emailControler.text,  movilControler.text ).then((_){
-                Navigator.pop(context);
-              });*/
-              await validate_data(emailControler.text, movilControler.text).then((_){
-                Navigator.pop(context);
-              });;
-
-
-            },
-            child: const Text("SAVE"),
-          ),
-        ],
+        ),
+        backgroundColor: Colors.blue,
+        elevation: 2,
+        centerTitle: true,
+      ),
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 60),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 20),
+            const SizedBox(width: 16),
+           
+            CustomTextField(
+              controller: emailControler,
+              hintText: "add email address",
+              prefixIcon: Icons.email,
+              keyboardType: TextInputType.emailAddress,
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              controller: movilControler,
+              hintText: "add mobile phone number ",
+              prefixIcon: Icons.phone,
+              keyboardType: TextInputType.phone,
+            ),
+            CustomButton(
+              text: "SAVE",
+              height: 50,
+              textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              textColor: Colors.white,
+              buttonColor: Colors.blue,
+              borderRadius: 10,
+              margin: const EdgeInsets.only(top: 24, bottom: 16),
+              horizontalSize: 0.4, // El botón ocupará el 80% del ancho de la pantalla
+              onPressed: () async {
+                // Tu lógica aquí
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
-   Widget _buildTextField({
+
+  Widget _buildTextField({
     required String hintText,
     required IconData prefixIcon,
     TextInputType keyboardType = TextInputType.text,
@@ -80,7 +83,6 @@ class _HomeState extends State<Home>{
         prefixIcon: Icon(prefixIcon),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),
-
         ),
         filled: true,
         fillColor: Colors.grey[200],
@@ -89,7 +91,6 @@ class _HomeState extends State<Home>{
       controller: controller, // Pasa el controlador al TextField
     );
   }
-  
 }
 //class _HomeState extends State<Home>{
   

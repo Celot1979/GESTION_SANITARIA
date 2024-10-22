@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
   final double? horizontalSize;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     this.width,
     this.height,
@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
     required this.onPressed,
     this.margin = const EdgeInsets.only(top: 16.0),
     this.horizontalSize,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

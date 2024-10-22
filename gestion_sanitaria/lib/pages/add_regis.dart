@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
+import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
+import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 class add_Registro extends StatefulWidget {
   const add_Registro({
@@ -20,58 +22,83 @@ class _add_RegistroState extends State<add_Registro> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "ADD RECORD",
-          style: TextStyle(
-            fontSize:20,
-            fontWeight: FontWeight.bold,
-          ),
-          ),
-          backgroundColor: Colors.blue,
-          elevation: 2,
-          centerTitle: true,
+        toolbarHeight: 100, // Aumenta la altura de la barra de la aplicación
+        title: Column(
+          children: [
+            const Text(
+              "HEALTH MANAGEMENT",
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(width: 16),
+            const Text(
+              "Add Registration",
+              style: TextStyle(
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(width: 30),
+          ],
+        ),
+        backgroundColor: Colors.blue,
+        elevation: 3,
+        centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          const SizedBox(height: 20),
-          _buildTextField(
-            controller: nameControler,
-            hintText: "add name",
-            prefixIcon: Icons.person_outline,
-          ),
-          const SizedBox(height: 16),
-          _buildTextField(
-            controller: lastControler,
-            hintText: "add lastaname",
-            prefixIcon: Icons.person_outline,
-          ),
-          const SizedBox(height: 16),
-          _buildTextField(
-            controller: movilControler,
-            hintText: "add mobile phone number ",
-            prefixIcon: Icons.phone,
-            keyboardType: TextInputType.phone,
-          ),
-          const SizedBox(height: 16),
-          _buildTextField(
-            controller: emailControler,
-            hintText: "add email address",
-            prefixIcon: Icons.email,
-            keyboardType: TextInputType.emailAddress,
-          ),
-          ElevatedButton(
-            onPressed: () async{
-              await addRegistro(nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
-                Navigator.pop(context);
-              });
+      body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 80),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 20),
+            CustomTextField(
+              controller: nameControler,
+              hintText: "add name",
+              prefixIcon: Icons.person_outline,
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              controller: lastControler,
+              hintText: "add lastaname",
+              prefixIcon: Icons.person_outline,
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              controller: movilControler,
+              hintText: "add mobile phone number ",
+              prefixIcon: Icons.phone,
+              keyboardType: TextInputType.phone,
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              controller: emailControler,
+              hintText: "add email address",
+              prefixIcon: Icons.email,
+              keyboardType: TextInputType.emailAddress,
+            ),
+            const SizedBox(width: 30,height: 20,),
+            Container(
               
-
-
-            },
-            child: const Text("SAVE"),
-          ),
-        ],
+              margin: const EdgeInsets.symmetric(horizontal: 80),
+              child: Expanded(
+                      child: CustomButton(
+                        text: "SAVE",
+                        height: 50, // Cambiado a un valor más estándar
+                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), // Tamaño de fuente reducido
+                        textColor: Colors.white,
+                        buttonColor: Colors.blue,
+                        borderRadius: 10,
+                        margin: const EdgeInsets.only(left: 8),
+                        onPressed: () async{
+                          await addRegistro(nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
+                            Navigator.pop(context);});
+                            },
+                      ),
+                    ),
+            ),
+          ],
+        ),
       ),
     );
   }

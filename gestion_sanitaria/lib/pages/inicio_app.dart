@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
 import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
+import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
 import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 
@@ -20,20 +21,12 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "HEALTH MANAGEMENT",
-          style: TextStyle(
-            fontSize: 40,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.blue,
-        elevation: 2,
-        centerTitle: true,
+      appBar: const CustomAppBar(
+        title: "HEALTH MANAGEMENT",
+        subtitle: "Welcome to the Hospital La Caridad foundation",
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 80),
+        margin: const EdgeInsets.symmetric(horizontal: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -45,7 +38,7 @@ class _HomeState extends State<Home> {
                   child: CustomButton(
                     text: "REGISTER",
                     height: 50,
-                    textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     textColor: Colors.white,
                     buttonColor: Colors.blue,
                     borderRadius: 10,
@@ -61,7 +54,7 @@ class _HomeState extends State<Home> {
                   child: CustomButton(
                     text: "LOGIN",
                     height: 50,
-                    textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     textColor: Colors.white,
                     buttonColor: Colors.blue,
                     borderRadius: 10,
@@ -89,7 +82,7 @@ class _HomeState extends State<Home> {
               controller: emailControler,
               hintText: "add email address",
               prefixIcon: Icons.email,
-              keyboardType: TextInputType.emailAddress,
+              keyboardType: TextInputType.emailAddress
             ),
             const SizedBox(height: 16),
             CustomTextField(
@@ -97,6 +90,7 @@ class _HomeState extends State<Home> {
               hintText: "add mobile phone number ",
               prefixIcon: Icons.phone,
               keyboardType: TextInputType.phone,
+               // Cambiado para no mostrar asteriscos
             ),
           ],
         ),

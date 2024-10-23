@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_sanitaria/pages/home_page.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_button.dart';
@@ -23,23 +24,23 @@ class _add_RegistroState extends State<add_Registro> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 100, // Aumenta la altura de la barra de la aplicación
-        title: Column(
+        title: const Column(
           children: [
-            const Text(
+            Text(
               "HEALTH MANAGEMENT",
               style: TextStyle(
                 fontSize: 40,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const SizedBox(width: 16),
-            const Text(
+            SizedBox(width: 16),
+            Text(
               "Add Registration",
               style: TextStyle(
                 fontSize: 16,
               ),
             ),
-            const SizedBox(width: 30),
+            SizedBox(width: 30),
           ],
         ),
         backgroundColor: Colors.blue,
@@ -47,7 +48,7 @@ class _add_RegistroState extends State<add_Registro> {
         centerTitle: true,
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(horizontal: 80),
+        margin: const EdgeInsets.symmetric(horizontal: 80),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -56,12 +57,16 @@ class _add_RegistroState extends State<add_Registro> {
               controller: nameControler,
               hintText: "add name",
               prefixIcon: Icons.person_outline,
+              keyboardType: TextInputType.name,
+              
             ),
             const SizedBox(height: 16),
             CustomTextField(
               controller: lastControler,
               hintText: "add lastaname",
               prefixIcon: Icons.person_outline,
+              keyboardType: TextInputType.name,
+               // Agregado para resolver el error
             ),
             const SizedBox(height: 16),
             CustomTextField(
@@ -69,6 +74,7 @@ class _add_RegistroState extends State<add_Registro> {
               hintText: "add mobile phone number ",
               prefixIcon: Icons.phone,
               keyboardType: TextInputType.phone,
+               // Agregado para resolver el error
             ),
             const SizedBox(height: 16),
             CustomTextField(
@@ -76,6 +82,7 @@ class _add_RegistroState extends State<add_Registro> {
               hintText: "add email address",
               prefixIcon: Icons.email,
               keyboardType: TextInputType.emailAddress,
+              
             ),
             const SizedBox(width: 30,height: 20,),
             Container(
@@ -85,15 +92,20 @@ class _add_RegistroState extends State<add_Registro> {
                       child: CustomButton(
                         text: "SAVE",
                         height: 50, // Cambiado a un valor más estándar
-                        textStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold), // Tamaño de fuente reducido
+                        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), // Tamaño de fuente reducido
                         textColor: Colors.white,
                         buttonColor: Colors.blue,
                         borderRadius: 10,
                         margin: const EdgeInsets.only(left: 8),
-                        onPressed: () async{
-                          await addRegistro(nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
-                            Navigator.pop(context);});
-                            },
+                        onPressed: () async {
+                          await addRegistro(nameControler.text, lastControler.text, movilControler.text, emailControler.text).then((_) {
+                            // Navegar a la página edit_page.dart después de agregar el registro
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const Home_read()), // Asegúrate de importar EditPage
+                            );
+                          });
+                        },
                       ),
                     ),
             ),
@@ -103,26 +115,4 @@ class _add_RegistroState extends State<add_Registro> {
     );
   }
 
-  //Está función personalizada del Widget es para darle una apariencia más profesional y una mejor experiencia al  usuario.
- Widget _buildTextField({
-    required String hintText,
-    required IconData prefixIcon,
-    TextInputType keyboardType = TextInputType.text,
-    required TextEditingController controller,
-  }) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon: Icon(prefixIcon),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-
-        ),
-        filled: true,
-        fillColor: Colors.grey[200],
-      ),
-      keyboardType: keyboardType,
-      controller: controller, // Pasa el controlador al TextField
-    );
-  }
 }

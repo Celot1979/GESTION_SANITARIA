@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
+import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
+import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
+import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 class EditNamePage extends StatefulWidget {
   const EditNamePage({
@@ -18,89 +21,93 @@ class _EditNamePageState extends State<EditNamePage> {
 
   @override
   Widget build(BuildContext context) {
-    final Map arguments = ModalRoute.of(context)!.settings.arguments as Map;
-    nameControler.text = arguments['name']?.data;
-    lastControler.text = arguments['lastname']?.data;
-    movilControler.text = arguments['movil']?.data;
-    emailControler.text = arguments['email']?.data;
+    final Map? arguments = ModalRoute.of(context)?.settings.arguments as Map?; // Cambiado a Map?
+    
+    // Verifica si 'arguments' es nulo antes de acceder a sus valores
+    if (arguments == null) {
+      return const Scaffold(
+        appBar: CustomAppBar(
+          title: "HEALTH MANAGEMENT",
+          subtitle: "Error: No se encontraron datos.",
+        ),
+        body: Center(child: Text("No se encontraron datos para editar.")),
+      );
+    }
+
+    nameControler.text = arguments['name']?.data ?? ""; // Proporciona un valor predeterminado
+    lastControler.text = arguments['lastname']?.data ?? "";
+    movilControler.text = arguments['movil']?.data ?? "";
+    emailControler.text = arguments['email']?.data ?? "";
 
     //['lastname'];['movil'];['email'];
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "EDIT RECORD",
-          style: TextStyle(
-            fontSize:20,
-            fontWeight: FontWeight.bold,
-          ),
-          ),
-          backgroundColor: Colors.blue,
-          elevation: 2,
-          centerTitle: true,
+     appBar: const CustomAppBar(
+        title: "HEALTH MANAGEMENT",
+        subtitle: "Edit system worker records",
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           const SizedBox(height: 20),
-          _buildTextField(
+          CustomTextField(
             controller: nameControler,
             hintText: "Enter name modification",
             prefixIcon: Icons.person_outline,
+            keyboardType: TextInputType.name,
+           
           ),
           const SizedBox(height: 16),
-          _buildTextField(
+          CustomTextField(
             controller: lastControler,
             hintText: "Enter the last name modification",
             prefixIcon: Icons.person_outline,
+            keyboardType: TextInputType.name,
+           
           ),
           const SizedBox(height: 16),
-          _buildTextField(
+          CustomTextField(
             controller: movilControler,
             hintText: "Enter the modification of the mobile numbers ",
             prefixIcon: Icons.phone,
             keyboardType: TextInputType.phone,
+            
           ),
           const SizedBox(height: 16),
-          _buildTextField(
+          CustomTextField(
             controller: emailControler,
             hintText: "Enter the email address modification",
             prefixIcon: Icons.email,
             keyboardType: TextInputType.emailAddress,
+            
           ),
-          ElevatedButton(
-            onPressed: () async{
-              await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
-                Navigator.pop(context);
-              });
+         const SizedBox(width: 30,height: 20,),
+            Container(
               
-            },
-            child: const Text("UPDATE"),
-          ),
-        ],
-      ),
-    );
-  }
-
-  //Está función personalizada del Widget es para darle una apariencia más profesional y una mejor experiencia al  usuario.
- Widget _buildTextField({
-    required String hintText,
-    required IconData prefixIcon,
-    TextInputType keyboardType = TextInputType.text,
-    required TextEditingController controller,
-  }) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon: Icon(prefixIcon),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
-
+              margin: const EdgeInsets.symmetric(horizontal: 80),
+              child: Expanded(
+                      child: CustomButton(
+                        text: "UPDATE",
+                        height: 50, // Cambiado a un valor más estándar
+                        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), // Tamaño de fuente reducido
+                        textColor: Colors.white,
+                        buttonColor: Colors.blue,
+                        borderRadius: 10,
+                        margin: const EdgeInsets.only(left: 8),
+                        onPressed: () async {
+                          await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
+                            Navigator.pop(context);
+                            });
+                        },
+                      ),
+                    ),
+            ),
+          ],
         ),
-        filled: true,
-        fillColor: Colors.grey[200],
-      ),
-      keyboardType: keyboardType,
-      controller: controller, // Pasa el controlador al TextField
-    );
+      );
+                  
+  
   }
+
+  
+ 
 }

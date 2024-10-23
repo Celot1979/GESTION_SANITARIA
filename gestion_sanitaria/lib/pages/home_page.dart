@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
+import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
 
 class Home_read extends  StatefulWidget{
   const Home_read({
@@ -13,18 +14,11 @@ class _Home_readState extends State<Home_read>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "HEALTH MANAGEMENT",
-          style: TextStyle(
-            fontSize:20,
-            fontWeight: FontWeight.bold,
-          ),
-          ),
-          backgroundColor: Colors.blue,
-          elevation: 2,
-          centerTitle: true,
-           ),
+       appBar: const CustomAppBar(
+        title: "HEALTH MANAGEMENT",
+        subtitle: "Workers registered in the system",
+      ),
+      
       body: FutureBuilder(
         future: getRegistro(), 
         builder: ((context, snapshot){

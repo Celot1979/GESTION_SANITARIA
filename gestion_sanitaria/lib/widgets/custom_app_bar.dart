@@ -27,7 +27,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           Text(
             subtitle.toUpperCase(), // Convierte el subtítulo a mayúsculas
             style: const TextStyle(
-              fontSize: 16,
+              fontSize: 22, // Cambiado a tamaño 22
+              fontWeight: FontWeight.bold, // Se mantiene en negrita
+              decoration: TextDecoration.underline, // Añadido subrayado
             ),
           ),
           const SizedBox(width: 30),

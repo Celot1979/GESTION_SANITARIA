@@ -18,6 +18,10 @@ class _HomeState extends State<Home> {
   TextEditingController nameControler = TextEditingController(text: " ");
   TextEditingController movilControler = TextEditingController(text: " ");
   TextEditingController emailControler = TextEditingController(text: " ");
+   // Agregado para definir la variable
+   bool isVariableDefined = false;
+   // Agregado para definir la variable de texto
+   String errorMessage = ""; // Variable de texto
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,15 +67,28 @@ class _HomeState extends State<Home> {
                       UserVerification userVerification = UserVerification();
                       bool userExists = await userVerification.checkUserExists(emailControler.text, movilControler.text);
                       if (userExists) {
-                        print('El usuario ya existe');
+                        print('El usuario ya existe ${UserVerification.userName}');
+                         await Navigator.pushNamed(context, "/login", arguments: UserVerification.userName?.toUpperCase()).then((_) {
+                          Navigator.pop(context);
+                         });
+                         setState(() {});
                         } else {
                           print('El usuario no existe');
-                          }
-                      emailControler.clear();
-                      movilControler.clear();
-                      setState(() {
-                        
-                      });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text(
+                                'Usuario o contraseña no encontrados',
+                                style: TextStyle(color: Colors.blue, fontSize: 22), // Aumentado el tamaño de la fuente
+                              ),
+                            ),
+                          );
+                          emailControler.clear();
+                          movilControler.clear();
+                          setState(() {
+                            
+                          });
+                        }
+                      
                     },
                   ),
                 ),
@@ -82,7 +99,7 @@ class _HomeState extends State<Home> {
               controller: emailControler,
               hintText: "add email address",
               prefixIcon: Icons.email,
-              keyboardType: TextInputType.emailAddress
+              keyboardType: TextInputType.emailAddress, onTap: () {  },
             ),
             const SizedBox(height: 16),
             CustomTextField(
@@ -90,8 +107,10 @@ class _HomeState extends State<Home> {
               hintText: "add mobile phone number ",
               prefixIcon: Icons.phone,
               keyboardType: TextInputType.phone,
-               // Cambiado para no mostrar asteriscos
+              onTap: () {},
             ),
+
+            
           ],
         ),
       ),

@@ -13,7 +13,7 @@ class add_Registro extends StatefulWidget {
 }
 
 class _add_RegistroState extends State<add_Registro> {
-  //Controladores para guardar la info de los registros 
+  //Controladores para guardar la info de los registros
   TextEditingController nameControler = TextEditingController(text: " ");
   TextEditingController lastControler = TextEditingController(text: " ");
   TextEditingController movilControler = TextEditingController(text: " ");
@@ -58,7 +58,7 @@ class _add_RegistroState extends State<add_Registro> {
               hintText: "add name",
               prefixIcon: Icons.person_outline,
               keyboardType: TextInputType.name,
-              
+              onTap: () {}, // Agregado el argumento requerido
             ),
             const SizedBox(height: 16),
             CustomTextField(
@@ -66,7 +66,8 @@ class _add_RegistroState extends State<add_Registro> {
               hintText: "add lastaname",
               prefixIcon: Icons.person_outline,
               keyboardType: TextInputType.name,
-               // Agregado para resolver el error
+              onTap: () {}, // Agregado el argumento requerido
+              // Agregado para resolver el error
             ),
             const SizedBox(height: 16),
             CustomTextField(
@@ -74,7 +75,8 @@ class _add_RegistroState extends State<add_Registro> {
               hintText: "add mobile phone number ",
               prefixIcon: Icons.phone,
               keyboardType: TextInputType.phone,
-               // Agregado para resolver el error
+              onTap: () {}, // Agregado el argumento requerido
+              // Agregado para resolver el error
             ),
             const SizedBox(height: 16),
             CustomTextField(
@@ -82,37 +84,44 @@ class _add_RegistroState extends State<add_Registro> {
               hintText: "add email address",
               prefixIcon: Icons.email,
               keyboardType: TextInputType.emailAddress,
-              
+              onTap: () {}, // Agregado el argumento requerido
             ),
-            const SizedBox(width: 30,height: 20,),
+            const SizedBox(
+              width: 30,
+              height: 20,
+            ),
             Container(
-              
               margin: const EdgeInsets.symmetric(horizontal: 80),
               child: Expanded(
-                      child: CustomButton(
-                        text: "SAVE",
-                        height: 50, // Cambiado a un valor más estándar
-                        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), // Tamaño de fuente reducido
-                        textColor: Colors.white,
-                        buttonColor: Colors.blue,
-                        borderRadius: 10,
-                        margin: const EdgeInsets.only(left: 8),
-                        onPressed: () async {
-                          await addRegistro(nameControler.text, lastControler.text, movilControler.text, emailControler.text).then((_) {
-                            // Navegar a la página edit_page.dart después de agregar el registro
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const Home_read()), // Asegúrate de importar EditPage
-                            );
-                          });
-                        },
-                      ),
-                    ),
+                child: CustomButton(
+                  text: "SAVE",
+                  height: 50, // Cambiado a un valor más estándar
+                  textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold), // Tamaño de fuente reducido
+                  textColor: Colors.white,
+                  buttonColor: Colors.blue,
+                  borderRadius: 10,
+                  margin: const EdgeInsets.only(left: 8),
+                  onPressed: () async {
+                    await addRegistro(nameControler.text, lastControler.text,
+                            movilControler.text, emailControler.text)
+                        .then((_) {
+                      // Navegar a la página edit_page.dart después de agregar el registro
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const Home_read()), // Asegúrate de importar EditPage
+                      );
+                    });
+                  },
+                ),
+              ),
             ),
           ],
         ),
       ),
     );
   }
-
 }

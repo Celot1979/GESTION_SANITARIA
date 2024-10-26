@@ -54,6 +54,7 @@ class _EditNamePageState extends State<EditNamePage> {
             hintText: "Enter name modification",
             prefixIcon: Icons.person_outline,
             keyboardType: TextInputType.name,
+            onTap: () {},
            
           ),
           const SizedBox(height: 16),
@@ -62,6 +63,7 @@ class _EditNamePageState extends State<EditNamePage> {
             hintText: "Enter the last name modification",
             prefixIcon: Icons.person_outline,
             keyboardType: TextInputType.name,
+            onTap: () {},
            
           ),
           const SizedBox(height: 16),
@@ -70,6 +72,7 @@ class _EditNamePageState extends State<EditNamePage> {
             hintText: "Enter the modification of the mobile numbers ",
             prefixIcon: Icons.phone,
             keyboardType: TextInputType.phone,
+            onTap: () {},
             
           ),
           const SizedBox(height: 16),
@@ -78,6 +81,7 @@ class _EditNamePageState extends State<EditNamePage> {
             hintText: "Enter the email address modification",
             prefixIcon: Icons.email,
             keyboardType: TextInputType.emailAddress,
+            onTap: () {},
             
           ),
          const SizedBox(width: 30,height: 20,),

@@ -12,14 +12,13 @@ class UserVerification {
       // Consulta a la colección de usuarios para verificar si existe un documento con el número de teléfono
       QuerySnapshot querySnapshotPhoneNumber = await _firestore.collection('registro').where('movil', isEqualTo: phoneNumber).get();
 
-      // Si se encuentra al menos un documento, significa que el usuario ya existe
-      if (querySnapshotEmail.docs.isNotEmpty) {
+      // Verificar si ambos documentos existen
+      if (querySnapshotEmail.docs.isNotEmpty && querySnapshotPhoneNumber.docs.isNotEmpty) {
         userName = querySnapshotEmail.docs.first['name']; // Guardar el nombre del usuario
-      } else if (querySnapshotPhoneNumber.docs.isNotEmpty) {
-        userName = querySnapshotPhoneNumber.docs.first['name']; // Guardar el nombre del usuario
+        return true; // Ambos documentos encontrados
       }
 
-      return querySnapshotEmail.docs.isNotEmpty || querySnapshotPhoneNumber.docs.isNotEmpty;
+      return false; // Al menos uno de los documentos no fue encontrado
     } catch (e) {
       print('Error al verificar usuario: $e');
       return false;

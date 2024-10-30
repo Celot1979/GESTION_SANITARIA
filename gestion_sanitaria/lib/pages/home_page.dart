@@ -16,7 +16,7 @@ class _Home_readState extends State<Home_read>{
     return Scaffold(
        appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
-        subtitle: "Workers registered in the system",
+        subtitle: "Workers registered in the system", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
       ),
       
       body: FutureBuilder(

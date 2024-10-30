@@ -28,7 +28,7 @@ class _EditNamePageState extends State<EditNamePage> {
       return const Scaffold(
         appBar: CustomAppBar(
           title: "HEALTH MANAGEMENT",
-          subtitle: "Error: No se encontraron datos.",
+          subtitle: "Error: No se encontraron datos.", imageUrl: 'https://i.ibb.co/xSdvDxv/AppBar.png', linkUrl: 'https://i.ibb.co/xSdvDxv/AppBar.png',
         ),
         body: Center(child: Text("No se encontraron datos para editar.")),
       );
@@ -43,7 +43,7 @@ class _EditNamePageState extends State<EditNamePage> {
     return Scaffold(
      appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
-        subtitle: "Edit system worker records",
+        subtitle: "Edit system worker records", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

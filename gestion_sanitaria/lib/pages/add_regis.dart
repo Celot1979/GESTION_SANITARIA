@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/pages/home_page.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
+import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
 import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 class add_Registro extends StatefulWidget {
@@ -22,30 +23,9 @@ class _add_RegistroState extends State<add_Registro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        toolbarHeight: 100, // Aumenta la altura de la barra de la aplicación
-        title: const Column(
-          children: [
-            Text(
-              "HEALTH MANAGEMENT",
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(width: 16),
-            Text(
-              "Add Registration",
-              style: TextStyle(
-                fontSize: 16,
-              ),
-            ),
-            SizedBox(width: 30),
-          ],
-        ),
-        backgroundColor: Colors.blue,
-        elevation: 3,
-        centerTitle: true,
+       appBar: const CustomAppBar(
+        title: "HEALTH MANAGEMENT",
+        subtitle: "Add Employee", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 80),

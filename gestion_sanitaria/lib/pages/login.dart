@@ -16,13 +16,18 @@ class _LoginState extends State<Login> {
     return Scaffold(
       appBar: CustomAppBar(
         title: "HEALTH MANAGEMENT",
-        subtitle: "WELCOME  ${UserVerification.userName}",
+        subtitle: "WELCOME  ${UserVerification.userName}", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
       ),
 
+
+
+      
+      floatingActionButton: IconButton(
+        onPressed: () async{
+          await Navigator.pushNamed(context, '/'); // Navega a la página HOME
+        },
+        icon: const Icon(Icons.home), // Cambia 'icon' por el ícono deseado
+      ),
     );
   }
-  
-
-  
- 
 }

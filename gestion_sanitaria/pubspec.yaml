@@ -39,6 +39,7 @@ dependencies:
   firebase_auth: ^5.3.1
   flutter_form_builder: ^9.5.0
   form_builder_validators: ^11.0.0
+  url_launcher: ^6.3.1
   
 
 dev_dependencies:
@@ -62,6 +63,9 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+     - assets/fundacion.jpg
+  
 
   # To add assets to your application, add an assets section, like this:
   # assets:

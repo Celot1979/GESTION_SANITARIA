@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
-        subtitle: "Welcome to the Hospital La Caridad foundation",
+        subtitle: "Welcome to the Hospital La Caridad foundation", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 80),
@@ -82,11 +82,11 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           );
-                          emailControler.clear();
-                          movilControler.clear();
-                          setState(() {
-                            
-                          });
+                           // Recargar la página
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(builder: (context) => const Home()),
+                          );
                         }
                       
                     },

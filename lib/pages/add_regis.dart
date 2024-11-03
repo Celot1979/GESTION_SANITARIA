@@ -1,0 +1,107 @@
+import 'package:flutter/material.dart';
+import 'package:gestion_sanitaria/pages/home_page.dart';
+import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
+import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
+import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
+import 'package:gestion_sanitaria/widgets/custom_button.dart';
+
+class add_Registro extends StatefulWidget {
+  const add_Registro({
+    super.key,
+  });
+  @override
+  State<add_Registro> createState() => _add_RegistroState();
+}
+
+class _add_RegistroState extends State<add_Registro> {
+  //Controladores para guardar la info de los registros
+  TextEditingController nameControler = TextEditingController(text: " ");
+  TextEditingController lastControler = TextEditingController(text: " ");
+  TextEditingController movilControler = TextEditingController(text: " ");
+  TextEditingController emailControler = TextEditingController(text: " ");
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+       appBar: const CustomAppBar(
+        title: "HEALTH MANAGEMENT",
+        subtitle: "Add Employee", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
+      ),
+      body: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 80),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const SizedBox(height: 20),
+            CustomTextField(
+              controller: nameControler,
+              hintText: "add name",
+              prefixIcon: Icons.person_outline,
+              keyboardType: TextInputType.name,
+              onTap: () {}, // Agregado el argumento requerido
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              controller: lastControler,
+              hintText: "add lastaname",
+              prefixIcon: Icons.person_outline,
+              keyboardType: TextInputType.name,
+              onTap: () {}, // Agregado el argumento requerido
+              // Agregado para resolver el error
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              controller: movilControler,
+              hintText: "add mobile phone number ",
+              prefixIcon: Icons.phone,
+              keyboardType: TextInputType.phone,
+              onTap: () {}, // Agregado el argumento requerido
+              // Agregado para resolver el error
+            ),
+            const SizedBox(height: 16),
+            CustomTextField(
+              controller: emailControler,
+              hintText: "add email address",
+              prefixIcon: Icons.email,
+              keyboardType: TextInputType.emailAddress,
+              onTap: () {}, // Agregado el argumento requerido
+            ),
+            const SizedBox(
+              width: 30,
+              height: 20,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 80),
+              child: Expanded(
+                child: CustomButton(
+                  text: "SAVE",
+                  height: 50, // Cambiado a un valor más estándar
+                  textStyle: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold), // Tamaño de fuente reducido
+                  textColor: Colors.white,
+                  buttonColor: Colors.blue,
+                  borderRadius: 10,
+                  margin: const EdgeInsets.only(left: 8),
+                  onPressed: () async {
+                    await addRegistro(nameControler.text, lastControler.text,
+                            movilControler.text, emailControler.text)
+                        .then((_) {
+                      // Navegar a la página edit_page.dart después de agregar el registro
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                const Home_read()), // Asegúrate de importar EditPage
+                      );
+                    });
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

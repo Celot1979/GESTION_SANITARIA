@@ -22,7 +22,7 @@ class _LoginState extends State<Login> {
         linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
       ),
       
-       body: Center(
+       body: const Center(
         child: MapWidget(), 
         /*LLama a la página map.dart. Es dónde tenemos la interfaz del plano del pabellón.
         También tendremos el código de interfaz de seleccionar las habitaciones y nombres de los enfermos.

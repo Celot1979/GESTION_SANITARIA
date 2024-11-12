@@ -28,11 +28,15 @@ class CustomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final buttonWidth = width ?? screenSize.width * 0.8;
+    final buttonHeight = height ?? screenSize.height * 0.07;
+
     return Container(
       margin: margin,
-      width: horizontalSize != null ? MediaQuery.of(context).size.width * horizontalSize! : width,
+      width: horizontalSize != null ? screenSize.width * horizontalSize! : buttonWidth,
       child: SizedBox(
-        height: height,
+        height: buttonHeight,
         child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(

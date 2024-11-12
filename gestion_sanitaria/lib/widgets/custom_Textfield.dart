@@ -16,19 +16,24 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: hintText,
-        labelText: hintText, // Agregado para mostrar el nombre del campo
-        prefixIcon: Icon(prefixIcon),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+    final screenWidth = MediaQuery.of(context).size.width; // Obtener el ancho de la pantalla
+
+    return Container(
+      width: screenWidth * 0.8, // Ajustar el ancho del TextField al 80% del ancho de la pantalla
+      child: TextField(
+        decoration: InputDecoration(
+          hintText: hintText,
+          labelText: hintText, // Agregado para mostrar el nombre del campo
+          prefixIcon: Icon(prefixIcon),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          filled: true,
+          fillColor: Colors.grey[200],
         ),
-        filled: true,
-        fillColor: Colors.grey[200],
+        keyboardType: keyboardType,
+        controller: controller,
       ),
-      keyboardType: keyboardType,
-      controller: controller,
     );
   }
 }

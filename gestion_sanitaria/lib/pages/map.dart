@@ -9,14 +9,13 @@ class MapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final roomChecker = RoomChecker();
 
-    return Container(
+    return  Container(
       child: Center(
         child: Stack(
           children: [
             MouseRegion(
               onHover: (event) {
-                if (roomChecker.isInRoom(
-                    event.localPosition, 4, 136, 680, 765, 1)) {
+                if (roomChecker.isInRoom(event.localPosition, 4, 136, 680, 765, 1)) {
                   print('Ratón sobre Habitación 1');
                   showDialog(
                     context: context,
@@ -26,24 +25,19 @@ class MapWidget extends StatelessWidget {
                     ),
                   );
                 }
-                if (roomChecker.isInRoom(
-                    event.localPosition, 4, 136, 556, 640, 2)) {
+                if (roomChecker.isInRoom(event.localPosition, 4, 136, 556, 640, 2)) {
                   print('Ratón sobre Habitación 2');
                 }
-                if (roomChecker.isInRoom(
-                    event.localPosition, 130, 185, 29, 132, 6)) {
+                if (roomChecker.isInRoom(event.localPosition, 130, 185, 29, 132, 6)) {
                   print('Ratón sobre Habitación 6');
                 }
-                if (roomChecker.isInRoom(
-                    event.localPosition, 4, 136, 361, 446, 3)) {
+                if (roomChecker.isInRoom(event.localPosition, 4, 136, 361, 446, 3)) {
                   print('Ratón sobre Habitación 3');
                 }
-                if (roomChecker.isInRoom(
-                    event.localPosition, 4, 136, 233, 317, 4)) {
+                if (roomChecker.isInRoom(event.localPosition, 4, 136, 233, 317, 4)) {
                   print('Ratón sobre Habitación 4');
                 }
-                if (roomChecker.isInRoom(
-                    event.localPosition, 20, 70, 29, 132, 5)) {
+                if (roomChecker.isInRoom(event.localPosition, 20, 70, 29, 132, 5)) {
                   print('Ratón sobre Habitación 5');
 
                   return;

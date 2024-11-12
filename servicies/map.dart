@@ -7,8 +7,8 @@ class MapWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // Aquí puedes usar un widget de mapa, como Google Maps o cualquier otro
-      child: Center(
-        child: Image.network('https://i.ibb.co/7XZvmGc/plano-Editado.png'), // Cambia 'URL_DEL_MAPA_AQUI' por la URL real del mapa
+      child: const Center(
+        child: Text('Mapa centrado aquí'), // Reemplaza esto con el widget del mapa
       ),
     );
   }

@@ -23,7 +23,7 @@ class _EditNamePageState extends State<EditNamePage> {
   Widget build(BuildContext context) {
     final Map? arguments = ModalRoute.of(context)?.settings.arguments as Map?; // Cambiado a Map?
     
-    // Verifica si 'arguments' es nulo antes de acceder a sus valores
+    // Verifica si 'arguments' es nulo antes de acceder a sus valores jjj
     if (arguments == null) {
       return const Scaffold(
         appBar: CustomAppBar(

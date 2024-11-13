@@ -86,24 +86,21 @@ class _EditNamePageState extends State<EditNamePage> {
           ),
          const SizedBox(width: 30,height: 20,),
             Container(
-              
               margin: const EdgeInsets.symmetric(horizontal: 80),
-              child: Expanded(
-                      child: CustomButton(
-                        text: "UPDATE",
-                        height: 50, // Cambiado a un valor más estándar
-                        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), // Tamaño de fuente reducido
-                        textColor: Colors.white,
-                        buttonColor: Colors.blue,
-                        borderRadius: 10,
-                        margin: const EdgeInsets.only(left: 8),
-                        onPressed: () async {
-                          await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
-                            Navigator.pop(context);
-                            });
-                        },
-                      ),
-                    ),
+              child: CustomButton(
+                text: "UPDATE",
+                height: 50, // Cambiado a un valor más estándar
+                textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold), // Tamaño de fuente reducido
+                textColor: Colors.white,
+                buttonColor: Colors.blue,
+                borderRadius: 10,
+                margin: const EdgeInsets.only(left: 8),
+                onPressed: () async {
+                  await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
+                    Navigator.pop(context);
+                  });
+                },
+              ),
             ),
           ],
         ),

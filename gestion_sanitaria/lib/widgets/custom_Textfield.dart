@@ -18,7 +18,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width; // Obtener el ancho de la pantalla
 
-    return Container(
+    return SizedBox(
       width: screenWidth * 0.8, // Ajustar el ancho del TextField al 80% del ancho de la pantalla
       child: TextField(
         decoration: InputDecoration(

@@ -90,13 +90,13 @@ class _Home_readState extends State<Home_read>{
 
         floatingActionButton: FloatingActionButton(
           onPressed:()async{
-            await Navigator.pushNamed(context, "/add");
+            await Navigator.pushNamed(context, "/");
             setState(() {
               
             });
 
           },
-          child :const Icon(Icons.add),
+          child :const Icon(Icons.home),
           ),
     );
    

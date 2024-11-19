@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
-import 'package:gestion_sanitaria/widgets/custom_Textfield.dart';
+import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
 import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
@@ -67,13 +67,13 @@ class _HomeState extends State<Home> {
                       UserVerification userVerification = UserVerification();
                       bool userExists = await userVerification.checkUserExists(emailControler.text, movilControler.text);
                       if (userExists) {
-                        print('El usuario ya existe ${UserVerification.userName}');
+                        //print('El usuario ya existe ${UserVerification.userName}');
                          await Navigator.pushNamed(context, "/login", arguments: UserVerification.userName?.toUpperCase()).then((_) {
                           Navigator.pop(context);
                          });
                          setState(() {});
                         } else {
-                          print('El usuario no existe');
+                          //print('El usuario no existe');
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text(

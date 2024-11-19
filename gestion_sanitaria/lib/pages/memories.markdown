@@ -62,3 +62,7 @@ class MapWidget extends StatelessWidget {
 }
 
 habitación 1 = 4, 136, 680, 765 .habitación 2 = 4, 136, 556, 640 , habitación 3 =  4, 136, 361, 446, habitación 4 = 4, 136, 233, 317, habitacion 5 = 20, 70, 29, 132, habitación 6 = 130, 185, 29, 132,
+
+Este código es parte de la interfaz para implentar pacientes a la colección de firebase con el nombre "paciente". Tengo varias TextEditinController para guardar lo que en los TextField tengan en su interior, introduccidos por los usuarios. Tengo un roomController, full_nameController, pathologyControler,timeController y name_medicationController. En la colección de Firebase tengo room ( que sería rellenada por el roomController), , fullname(que sería lo que tenga full_nameControler), pathology(que sería lo que está guardado en pathologyControler), medication(que sería lo que está guardardo name_medicationController) y por último time(que sería lo que está guardado en timeControler). 
+
+ await addRegistroP(roomControler.text,full_nameControler.text,name_medicationControler.text,pathologyControler.text, name_medicationControler.text );

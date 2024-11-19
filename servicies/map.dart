@@ -5,11 +5,13 @@ class MapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // Aquí puedes usar un widget de mapa, como Google Maps o cualquier otro
-      child: const Center(
-        child: Text('Mapa centrado aquí'), // Reemplaza esto con el widget del mapa
-      ),
+    return const Column(
+      children: [
+        // Aquí puedes usar un widget de mapa, como Google Maps o cualquier otro
+        Center(
+          child: Text('Mapa centrado aquí'), // Reemplaza esto con el widget del mapa
+        ),
+      ],
     );
   }
 } 

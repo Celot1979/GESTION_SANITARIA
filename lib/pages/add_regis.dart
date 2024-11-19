@@ -20,6 +20,22 @@ class _add_RegistroState extends State<add_Registro> {
   TextEditingController movilControler = TextEditingController(text: " ");
   TextEditingController emailControler = TextEditingController(text: " ");
 
+  int _selectedIndex = 0; // Índice para el BottomNavigationBar
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+    if (index == 0) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Home_read()),
+      );
+    } else if (index == 1) {
+      Navigator.pushNamed(context, "/");
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,35 +88,47 @@ class _add_RegistroState extends State<add_Registro> {
             ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 80),
-              child: Expanded(
-                child: CustomButton(
-                  text: "SAVE",
-                  height: 50, // Cambiado a un valor más estándar
-                  textStyle: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold), // Tamaño de fuente reducido
-                  textColor: Colors.white,
-                  buttonColor: Colors.blue,
-                  borderRadius: 10,
-                  margin: const EdgeInsets.only(left: 8),
-                  onPressed: () async {
-                    await addRegistro(nameControler.text, lastControler.text,
-                            movilControler.text, emailControler.text)
-                        .then((_) {
-                      // Navegar a la página edit_page.dart después de agregar el registro
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                const Home_read()), // Asegúrate de importar EditPage
-                      );
-                    });
-                  },
-                ),
+              child: CustomButton(
+                text: "SAVE",
+                height: 50, // Cambiado a un valor más estándar
+                textStyle: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold), // Tamaño de fuente reducido
+                textColor: Colors.white,
+                buttonColor: Colors.blue,
+                borderRadius: 10,
+                margin: const EdgeInsets.only(left: 8),
+                onPressed: () async {
+                  await addRegistro(nameControler.text, lastControler.text,
+                          movilControler.text, emailControler.text)
+                      .then((_) {
+                    // Navegar a la página edit_page.dart después de agregar el registro
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const Home_read()), // Asegúrate de importar EditPage
+                    );
+                  });
+                },
               ),
             ),
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'LIST',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'HOME',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }

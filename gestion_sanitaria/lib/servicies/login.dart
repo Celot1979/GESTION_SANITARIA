@@ -15,12 +15,20 @@ class UserVerification {
       // Verificar si ambos documentos existen
       if (querySnapshotEmail.docs.isNotEmpty && querySnapshotPhoneNumber.docs.isNotEmpty) {
         userName = querySnapshotEmail.docs.first['name']; // Guardar el nombre del usuario
+        //print('ID del documento: ${querySnapshotEmail.docs.first.id}'); // Imprimir el ID del documento
         return true; // Ambos documentos encontrados
+      } else {
+        if (querySnapshotEmail.docs.isEmpty) {
+          //print('Documento con el correo electrónico no encontrado'); // Mensaje si no se encuentra el documento de email
+        }
+        if (querySnapshotPhoneNumber.docs.isEmpty) {
+          //print('Documento con el número de teléfono no encontrado'); // Mensaje si no se encuentra el documento de teléfono
+        }
       }
 
       return false; // Al menos uno de los documentos no fue encontrado
     } catch (e) {
-      print('Error al verificar usuario: $e');
+      //print('Error al verificar usuario: $e');
       return false;
     }
   }

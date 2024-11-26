@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
+
+import 'package:gestion_sanitaria/servicies/firebase_servicie_pacient.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
 import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
-class EditNamePage extends StatefulWidget {
-  const EditNamePage({
+class EditPacient extends StatefulWidget {
+  const EditPacient({
     super.key,
   });
   @override
-  State<EditNamePage> createState() => _EditNamePageState();
+  State<EditPacient> createState() => _EditPacientState();
 }
 
-class _EditNamePageState extends State<EditNamePage> {
+class _EditPacientState extends State<EditPacient> {
   //Controladores para guardar la info de los registros 
-  TextEditingController nameControler = TextEditingController(text: " ");
-  TextEditingController lastControler = TextEditingController(text: " ");
-  TextEditingController movilControler = TextEditingController(text: " ");
-  TextEditingController emailControler = TextEditingController(text: " ");
+  TextEditingController roomControler = TextEditingController(text: " ");
+  TextEditingController fullControler = TextEditingController(text: " ");
+  TextEditingController pathologyControler = TextEditingController(text: " ");
+  TextEditingController medicationControler = TextEditingController(text: " ");
+  TextEditingController timerControler = TextEditingController(text: " ");
 
   @override
   Widget build(BuildContext context) {
@@ -34,57 +36,67 @@ class _EditNamePageState extends State<EditNamePage> {
       );
     }
 
-    nameControler.text = arguments['name']?.data ?? ""; // Proporciona un valor predeterminado
-    lastControler.text = arguments['lastname']?.data ?? "";
-    movilControler.text = arguments['movil']?.data ?? "";
-    emailControler.text = arguments['email']?.data ?? "";
+    roomControler.text = arguments['room']?.data ?? ""; // Proporciona un valor predeterminado
+    fullControler.text = arguments['fullname']?.data ?? "";
+    pathologyControler.text = arguments['pathology']?.data ?? "";
+    medicationControler.text = arguments['medication']?.data ?? "";
+    timerControler.text = arguments['time']?.data ?? "";
 
     //['lastname'];['movil'];['email'];
     return Scaffold(
      appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
-        subtitle: "Edit system worker records", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
+        subtitle: "Edit Patient List", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 20),
+          const SizedBox(width: 30,height: 20),
           CustomTextField(
-            controller: nameControler,
-            hintText: "Enter name modification",
-            prefixIcon: Icons.person_outline,
+            controller:  roomControler,
+            hintText: "Enter the room number modification",
+            prefixIcon: Icons.room,
             keyboardType: TextInputType.name,
             onTap: () {},
            
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            controller: lastControler,
-            hintText: "Enter the last name modification",
-            prefixIcon: Icons.person_outline,
+            controller: fullControler,
+            hintText: "Enter the full name modification",
+            prefixIcon: Icons.person_pin_circle,
             keyboardType: TextInputType.name,
             onTap: () {},
            
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            controller: movilControler,
-            hintText: "Enter the modification of the mobile numbers ",
-            prefixIcon: Icons.phone,
+            controller: pathologyControler,
+            hintText: "Introduces the modification on pathology or pathologies",
+            prefixIcon: Icons.medical_information,
             keyboardType: TextInputType.phone,
             onTap: () {},
             
           ),
           const SizedBox(height: 16),
           CustomTextField(
-            controller: emailControler,
-            hintText: "Enter the email address modification",
-            prefixIcon: Icons.email,
+            controller: medicationControler,
+            hintText: "Introduces the modification on medication",
+            prefixIcon: Icons.medication_liquid,
             keyboardType: TextInputType.emailAddress,
             onTap: () {},
             
           ),
-         const SizedBox(width: 30,height: 20),
+          const SizedBox(height: 16),
+          CustomTextField(
+            controller: timerControler,
+            hintText: "Introduces the modification on the administration of medication",
+            prefixIcon: Icons.timer,
+            keyboardType: TextInputType.emailAddress,
+            onTap: () {},
+            
+          ),
+         const SizedBox(width: 30,height: 20,),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 80),
               child: CustomButton(
@@ -96,7 +108,7 @@ class _EditNamePageState extends State<EditNamePage> {
                 borderRadius: 10,
                 margin: const EdgeInsets.only(left: 8),
                 onPressed: () async {
-                  await updateRegistro(arguments['uid']?.data,nameControler.text,lastControler.text,movilControler.text,emailControler.text).then((_){
+                  await updateRegistroP(arguments['uid']?.data,roomControler.text,fullControler.text,pathologyControler.text,medicationControler.text,timerControler.text).then((_){
                     Navigator.pop(context);
                   });
                 },

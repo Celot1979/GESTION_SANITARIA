@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/pages/map.dart';
-import 'package:gestion_sanitaria/pages/pacient_record.dart';
+import 'package:gestion_sanitaria/pages/Pacient/pacient_record.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
 

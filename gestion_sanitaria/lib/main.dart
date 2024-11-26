@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:gestion_sanitaria/pages/Pacient/edit_pacient.dart';
 import 'package:gestion_sanitaria/pages/edit_regis.dart';
 import 'package:gestion_sanitaria/pages/login.dart';
 import 'package:gestion_sanitaria/pages/map.dart';
-import 'package:gestion_sanitaria/pages/pacient_record.dart';
+import 'package:gestion_sanitaria/pages/Pacient/pacient_record.dart';
 import 'firebase_options.dart';
 //Importaciones de las páginas de
 import 'package:gestion_sanitaria/pages/add_regis.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const Login(),
         '/map': (context) => const MapWidget(),
         '/pacient': (context) => const PacientRecord(),
+        '/edit_pacient': (context) => const EditPacient(),
         
         
 

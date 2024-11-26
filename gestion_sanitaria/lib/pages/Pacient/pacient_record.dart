@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_sanitaria/pages/Pacient/pacient_update.dart';
+
 import 'package:gestion_sanitaria/servicies/firebase_servicie_pacient.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
@@ -71,7 +73,7 @@ class PacientRecord extends StatelessWidget {
               const SizedBox(height: 20),
               CustomTextField(
               controller: timeControler,
-              hintText: "add Medication Time",
+              hintText: "add Medication Time (YYYY-MM-DD HH:MM)",
               prefixIcon: Icons.timelapse_sharp,
               keyboardType: TextInputType.datetime,
               onTap: () {}, // Agregado el argumento requerido
@@ -89,14 +91,22 @@ class PacientRecord extends StatelessWidget {
                       child: CustomButton(
                         text: "Add Pacient",
                         onPressed: () async {
-                          await addRegistroP(
+                          await addpacientP(
                             roomControler.text,
                             full_nameControler.text,
                             pathologyControler.text,
                             timeControler.text,
                             name_medicationControler.text,
-                          ); //
+                          );
+                           roomControler.clear();
+                           full_nameControler.clear();
+                           pathologyControler.clear();
+                           timeControler.clear();
+                           name_medicationControler.clear();
+
+                          
                         },
+                        
                       ),
                     ),
                     SizedBox(
@@ -104,7 +114,17 @@ class PacientRecord extends StatelessWidget {
                       child: CustomButton(
                         text: "Update information pacient",
                         onPressed: () {
-                          // Lógica para actualizar información del paciente
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const PacientUpdate()), 
+                            /* Lo hemos dejado aquí:
+                            1º Crear un nuevo archivo que se llame update_paciente.dart
+                            2º Cambiamos el nombre de la clase que llama dentro del Navigaitor.plus.
+                            3º En el nuevo archivo - update_paciente.dart - tenemos que copiar y pegar el archivo
+                            que tenemos de modificar registros. 
+                            4º Crearemos las instrucciones en el archivo de firebase_servicie_pacient oportunas para
+                            que ejecuten las ordenes pertinentes. */
+                          );
                         },
                       ),
                     ),
@@ -117,15 +137,37 @@ class PacientRecord extends StatelessWidget {
                         },
                       ),
                     ),
+                    
+                    
                   ],
+                  
+
                 ),
+                
+                
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(height: 300),
+                  FloatingActionButton(
+                    onPressed: () async{
+                      await Navigator.pushNamed(context, '/login');
+                      },
+                      child: const Icon(Icons.map, color: Colors.blue),
+                        )
+                      ],
+                ),
             ],
+            
             
           ),
           
         ),
+        
       ),
+      
+      
     );
   }
 }

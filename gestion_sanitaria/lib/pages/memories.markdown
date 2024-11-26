@@ -66,3 +66,65 @@ habitación 1 = 4, 136, 680, 765 .habitación 2 = 4, 136, 556, 640 , habitación
 Este código es parte de la interfaz para implentar pacientes a la colección de firebase con el nombre "paciente". Tengo varias TextEditinController para guardar lo que en los TextField tengan en su interior, introduccidos por los usuarios. Tengo un roomController, full_nameController, pathologyControler,timeController y name_medicationController. En la colección de Firebase tengo room ( que sería rellenada por el roomController), , fullname(que sería lo que tenga full_nameControler), pathology(que sería lo que está guardado en pathologyControler), medication(que sería lo que está guardardo name_medicationController) y por último time(que sería lo que está guardado en timeControler). 
 
  await addRegistroP(roomControler.text,full_nameControler.text,name_medicationControler.text,pathologyControler.text, name_medicationControler.text );
+
+ Cómo puedo hacer que aquí salga la información que tengo como registrada en la colección de pacient en Firebase. La particularidad es que sólo me salga la información relacionada con la habitación 1 - nada más-.
+
+
+ Clase que había para crear una ventana emergente y decirnos que había una habitación num 1
+
+ import 'package:flutter/material.dart';
+
+class PopupHabitacion extends StatelessWidget {
+  final double coordX;
+  final String numeroHabitacion;
+
+  const PopupHabitacion({
+    super.key,
+    required this.coordX,
+    required this.numeroHabitacion,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Positioned(
+          left: coordX,
+          top: 50,
+          child: Material(
+            color: Colors.transparent,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.2),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Text(
+                'Habitación: $numeroHabitacion',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/*Text(
+                'Habitación: $numeroHabitacion',
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),

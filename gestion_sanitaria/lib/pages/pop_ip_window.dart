@@ -1,5 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Añadir esta importación
+import 'package:gestion_sanitaria/servicies/pacient_verification.dart';
+import 'package:flutter/material.dart'; // Añadir esta importación
+
+
 
 class PopupHabitacion extends StatelessWidget {
   final double coordX;
@@ -10,9 +12,9 @@ class PopupHabitacion extends StatelessWidget {
     required this.coordX,
     required this.numeroHabitacion,
   });
-
   @override
   Widget build(BuildContext context) {
+  
     return Stack(
       children: [
         Positioned(
@@ -20,82 +22,47 @@ class PopupHabitacion extends StatelessWidget {
           top: 50,
           child: Material(
             color: Colors.transparent,
-            child: StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('pacient')
-                  .where('room', isEqualTo: numeroHabitacion)
-                  .limit(1)
-                  .snapshots(),
-              builder: (context, snapshot) {
-                
-                if (snapshot.hasError) {
-                  return const Text('Error al cargar datos');
-                }
-
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const CircularProgressIndicator();
-                }
-
-                if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-                  return Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.2),
-                          blurRadius: 4,
-                          offset: const Offset(0, 2),
-                        ),
-                      ],
-                    ),
-                    child: Text('Habitación $numeroHabitacion: Sin paciente'),
-                  );
-                }
-
-                var pacientData =
-                    snapshot.data!.docs.first.data() as Map<String, dynamic>;
-                 if (snapshot.hasData) {
-                  pacientData = snapshot.data!.docs.first.data() as Map<String, dynamic>;
-                  // ... mostrar información del paciente
-                } else {
-                  // Mostrar indicador de carga mientras se esperan datos
-                  return const CircularProgressIndicator();
-                }
-
-                return Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(8),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.2),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(color: Colors.blueAccent, width: 2),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.5),
+                    blurRadius: 12,
+                    offset: const Offset(0, 6),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Habitación: $numeroHabitacion',
-                        style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                ],
+              ),
+              child: FutureBuilder(
+                future: PacientVerification().checkRoomExists(numeroHabitacion),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.hasData) {
+                    final userInfo = PacientVerification.userInfo; // Llamada al getter
+                    return Text(
+                      'La habitación ${numeroHabitacion} \n'//existe: ${snapshot.data}'
+                      'Información del paciente\n'
+                      'Nombre completo: ${userInfo['fullname']}\n'
+                      'Patología: ${userInfo['pathology']}\n'
+                      'Medicación: ${userInfo['medication']}\n'
+                      'Tiempo: ${userInfo['time']}',
+                      style: TextStyle(
+                        fontSize: 20, // Tamaño de fuente
+                        fontWeight: FontWeight.bold, // Negrita
+                        color: Colors.black, // Color del texto
                       ),
-                      const SizedBox(height: 8),
-                      Text('Paciente: ${pacientData['fullname']}'),
-                      Text('Patología: ${pacientData['pathology']}'),
-                      Text('Medicación: ${pacientData['medication']}'),
-                      Text('Horario: ${pacientData['time']}'),
-                    ],
-                  ),
-                );
-              },
+                    );
+                  } else {
+                    return const SizedBox.shrink();
+                  }
+                },
+              ),
             ),
           ),
         ),

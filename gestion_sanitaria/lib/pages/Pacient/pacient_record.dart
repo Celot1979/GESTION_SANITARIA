@@ -5,7 +5,7 @@ import 'package:gestion_sanitaria/servicies/firebase_servicie_pacient.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
-import 'package:gestion_sanitaria/widgets/custom_button.dart';
+//import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 
 
@@ -81,7 +81,7 @@ class PacientRecord extends StatelessWidget {
             
               const SizedBox(height: 20),
               // Agregando los botones en un contenedor
-              Container(
+              /*Container(
                 padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -109,7 +109,7 @@ class PacientRecord extends StatelessWidget {
                         
                       ),
                     ),
-                    SizedBox(
+                    /*SizedBox(
                       width: 150, // Estableciendo el ancho del botón
                       child: CustomButton(
                         text: "Update information pacient",
@@ -127,16 +127,8 @@ class PacientRecord extends StatelessWidget {
                           );
                         },
                       ),
-                    ),
-                    SizedBox(
-                      width: 150, // Estableciendo el ancho del botón
-                      child: CustomButton(
-                        text: "Delete pacient",
-                        onPressed: () {
-                          // Lógica para eliminar paciente
-                        },
-                      ),
-                    ),
+                    ),*/
+                    
                     
                     
                   ],
@@ -145,19 +137,8 @@ class PacientRecord extends StatelessWidget {
                 ),
                 
                 
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const SizedBox(height: 300),
-                  FloatingActionButton(
-                    onPressed: () async{
-                      await Navigator.pushNamed(context, '/login');
-                      },
-                      child: const Icon(Icons.map, color: Colors.blue),
-                        )
-                      ],
-                ),
+              ),*/
+             
             ],
             
             
@@ -166,8 +147,53 @@ class PacientRecord extends StatelessWidget {
         ),
         
       ),
-      
-      
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue,
+        selectedItemColor: Colors.lightBlueAccent,
+        unselectedItemColor: Colors.white,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_add, color: Colors.white),
+            label: 'ADD PACIENT',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.update, color: Colors.white),
+            label: 'UPDATE INFORMATION',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.map, color: Colors.white),
+            label: 'Map',
+          ),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              // Lógica para agregar paciente
+              addpacientP(
+                roomControler.text,
+                full_nameControler.text,
+                pathologyControler.text,
+                timeControler.text,
+                name_medicationControler.text,
+              );
+              roomControler.clear();
+              full_nameControler.clear();
+              pathologyControler.clear();
+              timeControler.clear();
+              name_medicationControler.clear();
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const PacientUpdate()),
+              );
+              break;
+            case 2:
+              Navigator.pushNamed(context, '/login');
+              break;
+          }
+        },
+      ),
     );
   }
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
-import 'package:gestion_sanitaria/widgets/custom_button.dart';
+//import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 
 
@@ -22,6 +22,7 @@ class _HomeState extends State<Home> {
    bool isVariableDefined = false;
    // Agregado para definir la variable de texto
    String errorMessage = ""; // Variable de texto
+   int _selectedIndex = 0; // Inicializa el índice seleccionado
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,66 +36,6 @@ class _HomeState extends State<Home> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Expanded(
-                  child: CustomButton(
-                    text: "REGISTER",
-                    height: 50,
-                    textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    textColor: Colors.white,
-                    buttonColor: Colors.blue,
-                    borderRadius: 10,
-                    margin: const EdgeInsets.only(right: 8),
-                    onPressed: () async {
-                      await Navigator.pushNamed(context, "/add");
-                      setState(() {});
-                    },
-                  ),
-                ),
-                const SizedBox(width: 16),
-                Expanded(
-                  child: CustomButton(
-                    text: "LOGIN",
-                    height: 50,
-                    textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    textColor: Colors.white,
-                    buttonColor: Colors.blue,
-                    borderRadius: 10,
-                    margin: const EdgeInsets.only(left: 8),
-                    onPressed: () async {
-                      UserVerification userVerification = UserVerification();
-                      bool userExists = await userVerification.checkUserExists(emailControler.text, movilControler.text);
-                      if (userExists) {
-                        //print('El usuario ya existe ${UserVerification.userName}');
-                         await Navigator.pushNamed(context, "/login", arguments: UserVerification.userName?.toUpperCase()).then((_) {
-                          Navigator.pop(context);
-                         });
-                         setState(() {});
-                        } else {
-                          //print('El usuario no existe');
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                              content: Text(
-                                'Usuario o contraseña no encontrados',
-                                style: TextStyle(color: Colors.blue, fontSize: 22), // Aumentado el tamaño de la fuente
-                              ),
-                            ),
-                          );
-                           // Recargar la página
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(builder: (context) => const Home()),
-                          );
-                        }
-                      
-                    },
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 30),
             CustomTextField(
               controller: emailControler,
               hintText: "add email address",
@@ -113,6 +54,52 @@ class _HomeState extends State<Home> {
             
           ],
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.blue,
+        selectedItemColor: const Color.fromARGB(255, 187, 208, 218),
+        unselectedItemColor: Colors.white,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.app_registration),
+            label: "REGISTER",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.login),
+            label: "LOGIN",
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+          if (index == 0) {
+            Navigator.pushNamed(context, "/add");
+          } else if (index == 1) {
+            UserVerification userVerification = UserVerification();
+            userVerification.checkUserExists(emailControler.text, movilControler.text).then((userExists) {
+              if (userExists) {
+                Navigator.pushNamed(context, "/login", arguments: UserVerification.userName?.toUpperCase()).then((_) {
+                  Navigator.pop(context);
+                });
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text(
+                      'Usuario o contraseña no encontrados',
+                      style: TextStyle(color: Colors.blue, fontSize: 22),
+                    ),
+                  ),
+                );
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Home()),
+                );
+              }
+            });
+          }
+        },
       ),
     );
   }

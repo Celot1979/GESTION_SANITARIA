@@ -87,7 +87,7 @@ class _add_RegistroState extends State<AddRegistro> {
               width: 30,
               height: 20,
             ),
-            Container(
+            /*Container(
               margin: const EdgeInsets.symmetric(horizontal: 80),
               child: CustomButton(
                 text: "SAVE",
@@ -113,19 +113,13 @@ class _add_RegistroState extends State<AddRegistro> {
                   });
                 },
               ),
-            ),
+            ),*/
           ],
         ),
       ),
       bottomNavigationBar: Container(
         decoration: const BoxDecoration(
-          color: Colors.white, // Color de fondo del contenedor
-          border: Border(
-            top: BorderSide(
-              color: Colors.grey, // Color del borde
-              width: 4.0, // Grosor del borde
-            ),
-          ),
+          color: Colors.blue, // Color de fondo del contenedor
         ),
         child: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
@@ -134,14 +128,32 @@ class _add_RegistroState extends State<AddRegistro> {
               label: 'LIST',
             ),
             BottomNavigationBarItem(
+              icon: Icon(Icons.save), // Icono para el nuevo ítem
+              label: 'SAVE', // Etiqueta para el nuevo ítem
+            ),
+            BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'HOME',
             ),
           ],
           currentIndex: _selectedIndex,
-          onTap: _onItemTapped,
-          selectedItemColor: Colors.blue, // Color del ítem seleccionado
-          unselectedItemColor: Colors.blue, // Color del ítem no seleccionado
+          onTap: (index) {
+            if (index == 1) { // Si se selecciona el ítem de guardar
+              // Lógica para guardar la información
+              addRegistro(nameControler.text, lastControler.text,
+                  movilControler.text, emailControler.text).then((_) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeRead()),
+                );
+              });
+            } else {
+              _onItemTapped(index); // Llamar a la función existente para otros ítems
+            }
+          },
+          backgroundColor: Colors.blue, // Corregido el nombre del parámetro
+          selectedItemColor: const Color.fromARGB(255, 187, 208, 218), // Color del ítem seleccionado
+          unselectedItemColor: Colors.white, // Color del ítem no seleccionado
         ),
       ),
     );

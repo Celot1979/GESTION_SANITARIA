@@ -46,13 +46,13 @@ class PopupHabitacion extends StatelessWidget {
                   } else if (snapshot.hasData) {
                     final userInfo = PacientVerification.userInfo; // Llamada al getter
                     return Text(
-                      'La habitación ${numeroHabitacion} \n'//existe: ${snapshot.data}'
+                      'La habitación $numeroHabitacion \n'//existe: ${snapshot.data}'
                       'Información del paciente\n'
                       'Nombre completo: ${userInfo['fullname']}\n'
                       'Patología: ${userInfo['pathology']}\n'
                       'Medicación: ${userInfo['medication']}\n'
                       'Tiempo: ${userInfo['time']}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20, // Tamaño de fuente
                         fontWeight: FontWeight.bold, // Negrita
                         color: Colors.black, // Color del texto

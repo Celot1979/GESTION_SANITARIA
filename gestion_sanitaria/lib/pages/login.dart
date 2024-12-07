@@ -47,16 +47,18 @@ class _LoginState extends State<Login> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment, color: Colors.blue), // Icono para registro de paciente
+            icon: Icon(Icons.assignment, color: Colors.white), // Icono para registro de paciente
             label: 'Registro Paciente',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Colors.blue), // Icono para home
+            icon: Icon(Icons.home, color: Colors.white), // Icono para home
             label: 'Home',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
+        backgroundColor: Colors.blue, // Corregido el nombre del parámetro
+        selectedItemColor: const Color.fromARGB(255, 187, 208, 218), // Color del ítem seleccionado
+        unselectedItemColor: Colors.white, 
         onTap: (index) {
           _onItemTapped(index);
           if (index == 0) {

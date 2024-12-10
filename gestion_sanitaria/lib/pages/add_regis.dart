@@ -3,7 +3,7 @@ import 'package:gestion_sanitaria/pages/home_page.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
-import 'package:gestion_sanitaria/widgets/custom_button.dart';
+//import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 class AddRegistro extends StatefulWidget {
   const AddRegistro({
@@ -43,6 +43,8 @@ class _add_RegistroState extends State<AddRegistro> {
        appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
         subtitle: "Add Employee", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
+         titleStyle: TextStyle(fontSize: 24),
+        subtitleStyle: TextStyle(fontSize: 16),
       ),
       body: Container(
         margin: const EdgeInsets.symmetric(horizontal: 80),
@@ -147,6 +149,8 @@ class _add_RegistroState extends State<AddRegistro> {
                   MaterialPageRoute(builder: (context) => const HomeRead()),
                 );
               });
+            } else if (index == 2) { // Si se selecciona el ítem de HOME
+              Navigator.pushNamed(context, "/"); // Navegar a la ruta "/"
             } else {
               _onItemTapped(index); // Llamar a la función existente para otros ítems
             }

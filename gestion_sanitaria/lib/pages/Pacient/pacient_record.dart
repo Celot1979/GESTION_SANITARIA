@@ -33,6 +33,8 @@ class PacientRecord extends StatelessWidget {
         subtitle: "WELCOME  ${UserVerification.userName}".toUpperCase(),  
         imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', 
         linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
+        titleStyle: const TextStyle(fontSize: 24),
+        subtitleStyle: const TextStyle(fontSize: 16),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

@@ -53,7 +53,7 @@ class PopupHabitacion extends StatelessWidget {
                       'Medicación: ${userInfo['medication']}\n'
                       'Tiempo: ${userInfo['time']}',
                       style: const TextStyle(
-                        fontSize: 20, // Tamaño de fuente
+                        fontSize: 14, // Tamaño de fuente
                         fontWeight: FontWeight.bold, // Negrita
                         color: Colors.black, // Color del texto
                       ),

@@ -17,6 +17,8 @@ class _HomeReadState extends State<HomeRead>{
        appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
         subtitle: "Workers registered in the system", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
+         titleStyle: TextStyle(fontSize: 24),
+        subtitleStyle: TextStyle(fontSize: 16),
       ),
       
       body: FutureBuilder(

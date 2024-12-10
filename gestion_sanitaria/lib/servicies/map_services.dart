@@ -23,6 +23,19 @@ class RoomChecker {
 
     return isInRoom;
   }
-}
 
-// ... código existente ...
+  // Nueva función para dibujar los cuadrados
+  Widget buildRoomHighlight(double x1, double x2, double y1, double y2) {
+    return Positioned(
+      left: x1,
+      top: y1,
+      child: Container(
+        width: x2 - x1,
+        height: y2 - y1,
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.red, width: 2), // Color y grosor del borde
+        ),
+      ),
+    );
+  }
+}

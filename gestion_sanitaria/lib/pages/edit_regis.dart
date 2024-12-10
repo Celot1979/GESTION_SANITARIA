@@ -29,6 +29,8 @@ class _EditNamePageState extends State<EditNamePage> {
         appBar: CustomAppBar(
           title: "HEALTH MANAGEMENT",
           subtitle: "Error: No se encontraron datos.", imageUrl: 'https://i.ibb.co/xSdvDxv/AppBar.png', linkUrl: 'https://i.ibb.co/xSdvDxv/AppBar.png',
+           titleStyle: TextStyle(fontSize: 24),
+        subtitleStyle: TextStyle(fontSize: 16),
         ),
         body: Center(child: Text("No se encontraron datos para editar.")),
       );
@@ -44,6 +46,8 @@ class _EditNamePageState extends State<EditNamePage> {
      appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
         subtitle: "Edit system worker records", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
+         titleStyle: TextStyle(fontSize: 24),
+        subtitleStyle: TextStyle(fontSize: 16),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

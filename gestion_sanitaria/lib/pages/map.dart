@@ -8,6 +8,7 @@ class MapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final roomChecker = RoomChecker();
+    double coordx =0.5;
     
 
     return  Center(
@@ -15,62 +16,62 @@ class MapWidget extends StatelessWidget {
         children: [
           MouseRegion(
             onHover: (event) {
-              if (roomChecker.isInRoom(event.localPosition, 4, 136, 680, 765, 1)) {
+              if (roomChecker.isInRoom(event.localPosition, 3.75,108,537,610, 1)) {
                 print('Ratón sobre Habitación 1');
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => const PopupHabitacion(
-                    coordX: 136.0,
+                  builder: (BuildContext context) => PopupHabitacion(
+                    coordX: coordx,
                     numeroHabitacion: '1',
                   ),
                 );
               }
-              if (roomChecker.isInRoom(event.localPosition, 4, 136, 556, 640, 2)) {
+              if (roomChecker.isInRoom(event.localPosition,3.75,108,442,510, 2)) {
                 print('Ratón sobre Habitación 2');
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => const PopupHabitacion(
-                    coordX: 136.0,
+                  builder: (BuildContext context) =>  PopupHabitacion(
+                    coordX: coordx,
                     numeroHabitacion: '2',
                   ),
                 );
               }
-              if (roomChecker.isInRoom(event.localPosition, 130, 185, 29, 132, 6)) {
+              if (roomChecker.isInRoom(event.localPosition, 105,150, 22.4, 103, 6)) {
                 print('Ratón sobre Habitación 6');
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => const PopupHabitacion(
-                    coordX: 136.0,
+                  builder: (BuildContext context) => PopupHabitacion(
+                    coordX: coordx,
                     numeroHabitacion: '6',
                   ),
                 );
               }
-              if (roomChecker.isInRoom(event.localPosition, 4, 136, 361, 446, 3)) {
+              if (roomChecker.isInRoom(event.localPosition, 3.75,108,287,355, 3)) {
                 print('Ratón sobre Habitación 3');
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => const PopupHabitacion(
-                    coordX: 136.0,
+                  builder: (BuildContext context) =>  PopupHabitacion(
+                    coordX: coordx,
                     numeroHabitacion: '3',
                   ),
                 );
               }
-              if (roomChecker.isInRoom(event.localPosition, 4, 136, 233, 317, 4)) {
+              if (roomChecker.isInRoom(event.localPosition, 4,108,187,253, 4)) {
                 print('Ratón sobre Habitación 4');
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => const PopupHabitacion(
-                    coordX: 136.0,
+                  builder: (BuildContext context) =>  PopupHabitacion(
+                    coordX: coordx,
                     numeroHabitacion: '4',
                   ),
                 );
               }
-              if (roomChecker.isInRoom(event.localPosition, 20, 70, 29, 132, 5)) {
+              if (roomChecker.isInRoom(event.localPosition, 15,60,22.4,103, 5)) {
                 print('Ratón sobre Habitación 5');
                 showDialog(
                   context: context,
-                  builder: (BuildContext context) => const PopupHabitacion(
-                    coordX: 136.0,
+                  builder: (BuildContext context) =>  PopupHabitacion(
+                    coordX: coordx,
                     numeroHabitacion: '5',
                   ),
                 );
@@ -82,13 +83,12 @@ class MapWidget extends StatelessWidget {
                 Image.network('https://i.ibb.co/7XZvmGc/plano-Editado.png'),
           ),
           /*Aquí estaba la parte del código que nos dibujaba los cuadrados encima del croquis.*/
-          /*roomChecker.buildRoomHighlight(20, 70, 29, 132), //5
-          roomChecker.buildRoomHighlight(130, 185, 29, 132), //6
-          roomChecker.buildRoomHighlight(5, 136, 233, 317), //4
-          roomChecker.buildRoomHighlight(4, 136, 361, 446), //3
-          roomChecker.buildRoomHighlight(4, 136, 556, 640), //2
-    
-          roomChecker.buildRoomHighlight(4, 136, 680, 765), //1*/
+          //roomChecker.buildRoomHighlight(15,60,24,103), //5
+          //roomChecker.buildRoomHighlight(105,150, 22.4, 103), //6
+          //roomChecker.buildRoomHighlight(4,108,187,253), //4
+          //roomChecker.buildRoomHighlight(3.75,108,287,355), //3
+          //roomChecker.buildRoomHighlight(3.75,108,442,510), //2
+          //roomChecker.buildRoomHighlight(3.75,108,537,610), //1
         ],
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:gestion_sanitaria/servicies/firebase_servicie_pacient.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
 
@@ -17,7 +16,9 @@ class _PacientUpdateState extends State<PacientUpdate>{
     return Scaffold(
        appBar: const CustomAppBar(
         title: "HEALTH MANAGEMENT",
-        subtitle: "LIST OF ADMITTED PATIENTS", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png',
+        subtitle: "LIST OF ADMITTED PATIENTS", imageUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', linkUrl: 'https://i.ibb.co/PTrTqYz/AppBar.png', 
+        titleStyle: TextStyle(fontSize: 24),
+        subtitleStyle: TextStyle(fontSize: 16),
       ),
       
       body: FutureBuilder(

@@ -12,14 +12,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.imageUrl,
     required this.title,
     required this.subtitle,
-    required this.linkUrl, // Se añade la URL del hipervínculo como parámetro
+    required this.linkUrl, required TextStyle titleStyle, required TextStyle subtitleStyle, // Se añade la URL del hipervínculo como parámetro
   });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      toolbarHeight: 200,
+      toolbarHeight: MediaQuery.of(context).size.height * 0.25,
       flexibleSpace: GestureDetector( // Añadido GestureDetector para hacer clic en la imagen
         onTap: () async {
           if (await canLaunch(linkUrl)) { // Verifica si se puede abrir la URL
@@ -29,6 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           }
         },
         child: Container(
+          height: double.infinity,
           decoration: BoxDecoration(
             image: DecorationImage(
               image: NetworkImage(imageUrl), // Carga la imagen desde la URL

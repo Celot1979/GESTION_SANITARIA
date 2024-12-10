@@ -27,4 +27,4 @@ bottomNavigationBar: Container(
         ),
       ),
 
-      Crear otro BottomNavigationBarItem que realice la función del CustomButton de salvar la información . Este Item debe estar en la mitad de los otros dos Items
+    MediaQuery.of(context)

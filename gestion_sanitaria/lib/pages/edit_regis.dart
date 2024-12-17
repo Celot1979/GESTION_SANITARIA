@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
-import 'package:gestion_sanitaria/widgets/custom_button.dart';
+//import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 class EditNamePage extends StatefulWidget {
   const EditNamePage({
@@ -89,7 +89,7 @@ class _EditNamePageState extends State<EditNamePage> {
             
           ),
          const SizedBox(width: 30,height: 20),
-            Container(
+            /*Container(
               margin: const EdgeInsets.symmetric(horizontal: 80),
               child: CustomButton(
                 text: "UPDATE",
@@ -105,14 +105,37 @@ class _EditNamePageState extends State<EditNamePage> {
                   });
                 },
               ),
-            ),
+            ),*/
             
-
-
-
           ],
         ),
-      );
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0, // Corregido el índice seleccionado
+        backgroundColor: Colors.blue, // Corregido el nombre del parámetro
+        selectedItemColor: const Color.fromARGB(255, 187, 208, 218), // Color del ítem seleccionado
+        unselectedItemColor: Colors.white, 
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.update),
+            label: 'UPDATE',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'HOME',
+          ),
+        ],
+        onTap: (index) {
+          if (index == 0) { // Si se selecciona el primer ítem
+            // Lógica para actualizar el registro
+            updateRegistro(arguments['uid']?.data, nameControler.text, lastControler.text, movilControler.text, emailControler.text).then((_) {
+              Navigator.pop(context);
+            });
+          } else if (index == 1) { // Si se selecciona el segundo ítem
+            Navigator.pushNamed(context, '/'); // Navegar a la página /login
+          }
+        },
+      ),
+    );
                   
   
   }

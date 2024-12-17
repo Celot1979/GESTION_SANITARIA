@@ -40,6 +40,7 @@ dependencies:
   flutter_form_builder: ^9.5.0
   form_builder_validators: ^11.0.0
   url_launcher: ^6.3.1
+  video_player: ^2.9.2
   
 
 dev_dependencies:
@@ -64,11 +65,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-     - assets/fundacion.jpg
-  
-
-  # To add assets to your application, add an assets section, like this:
-  # assets:
+    - assets/fundacion.jpg
+    - assets/animacion.mp4
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

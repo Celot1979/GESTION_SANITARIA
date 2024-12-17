@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie_pacient.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
-import 'package:gestion_sanitaria/widgets/custom_button.dart';
 
 class EditPacient extends StatefulWidget {
   const EditPacient({
@@ -101,7 +100,7 @@ class _EditPacientState extends State<EditPacient> {
             
           ),
          const SizedBox(width: 30,height: 20,),
-            Container(
+            /*Container(
               margin: const EdgeInsets.symmetric(horizontal: 80),
               child: CustomButton(
                 text: "UPDATE",
@@ -117,11 +116,37 @@ class _EditPacientState extends State<EditPacient> {
                   });
                 },
               ),
-            ),
+            ),*/
           ],
         ),
-      );
-                  
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0, // Corregido el índice seleccionado
+        backgroundColor: Colors.blue, // Corregido el nombre del parámetro
+        selectedItemColor: const Color.fromARGB(255, 187, 208, 218), // Color del ítem seleccionado
+        unselectedItemColor: Colors.white, 
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.update),
+            label: 'UPDATE',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'HOME',
+          ),
+        ],
+        onTap: (index) {
+          if (index == 0) { // Si se selecciona el primer ítem
+            // Lógica para actualizar el registro
+            updateRegistroP(arguments['uid']?.data, roomControler.text, fullControler.text, pathologyControler.text, medicationControler.text, timerControler.text).then((_) {
+              Navigator.pop(context);
+            });
+          } else if (index == 1) { // Si se selecciona el segundo ítem
+            Navigator.pushNamed(context, '/login'); // Navegar a la página /add
+          }
+        },
+        
+      ),
+    );
   
   }
 

@@ -14,16 +14,26 @@ class EditPacient extends StatefulWidget {
 
 class _EditPacientState extends State<EditPacient> {
   //Controladores para guardar la info de los registros 
-  TextEditingController roomControler = TextEditingController(text: " ");
-  TextEditingController fullControler = TextEditingController(text: " ");
-  TextEditingController pathologyControler = TextEditingController(text: " ");
-  TextEditingController medicationControler = TextEditingController(text: " ");
-  TextEditingController timerControler = TextEditingController(text: " ");
+  late TextEditingController roomControler;
+  late TextEditingController fullControler;
+  late TextEditingController pathologyControler;
+  late TextEditingController medicationControler;
+  late TextEditingController timerControler;
+
+  @override
+  void initState() {
+    super.initState();
+    roomControler = TextEditingController();
+    fullControler = TextEditingController();
+    pathologyControler = TextEditingController();
+    medicationControler = TextEditingController();
+    timerControler = TextEditingController();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final Map? arguments = ModalRoute.of(context)?.settings.arguments as Map?; // Cambiado a Map?
-    
+    final Map? arguments = ModalRoute.of(context)?.settings.arguments as Map?;
+
     // Verifica si 'arguments' es nulo antes de acceder a sus valores
     if (arguments == null) {
       return const Scaffold(
@@ -37,7 +47,8 @@ class _EditPacientState extends State<EditPacient> {
       );
     }
 
-    roomControler.text = arguments['room']?.data ?? ""; // Proporciona un valor predeterminado
+    // Inicializa los controladores con los datos de los argumentos
+    roomControler.text = arguments['room']?.data ?? "";
     fullControler.text = arguments['fullname']?.data ?? "";
     pathologyControler.text = arguments['pathology']?.data ?? "";
     medicationControler.text = arguments['medication']?.data ?? "";
@@ -120,10 +131,10 @@ class _EditPacientState extends State<EditPacient> {
           ],
         ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // Corregido el índice seleccionado
-        backgroundColor: Colors.blue, // Corregido el nombre del parámetro
-        selectedItemColor: const Color.fromARGB(255, 187, 208, 218), // Color del ítem seleccionado
-        unselectedItemColor: Colors.white, 
+        currentIndex: 0,
+        backgroundColor: Colors.blue,
+        selectedItemColor: const Color.fromARGB(255, 187, 208, 218),
+        unselectedItemColor: Colors.white,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.update),
@@ -135,21 +146,27 @@ class _EditPacientState extends State<EditPacient> {
           ),
         ],
         onTap: (index) {
-          if (index == 0) { // Si se selecciona el primer ítem
+          if (index == 0) {
             // Lógica para actualizar el registro
             updateRegistroP(arguments['uid']?.data, roomControler.text, fullControler.text, pathologyControler.text, medicationControler.text, timerControler.text).then((_) {
               Navigator.pop(context);
             });
-          } else if (index == 1) { // Si se selecciona el segundo ítem
-            Navigator.pushNamed(context, '/login'); // Navegar a la página /add
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/login');
           }
         },
-        
       ),
     );
   
   }
 
-  
- 
+  @override
+  void dispose() {
+    roomControler.dispose();
+    fullControler.dispose();
+    pathologyControler.dispose();
+    medicationControler.dispose();
+    timerControler.dispose();
+    super.dispose();
+  }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
-//import 'package:gestion_sanitaria/widgets/custom_button.dart';
 import 'dart:async';
 
 
@@ -37,7 +36,7 @@ class _HomeState extends State<Home> {
       // Lógica para cambiar el color gradualmente
       setState(() {
         // Cambia el color aquí para ir de amarillo a rojo
-        _colorCuadrado = Color.lerp(const Color.fromARGB(255, 106, 144, 240), const Color.fromARGB(255, 237, 171, 63), timer.tick / 10) ?? const Color.fromARGB(255, 227, 100, 91);
+        _colorCuadrado = Color.lerp(const Color.fromARGB(255, 137, 106, 240), const Color.fromARGB(255, 226, 84, 22), timer.tick / 10) ?? const Color.fromARGB(255, 227, 100, 91);
       });
       if (timer.tick >= 10) {
         timer.cancel(); // Detiene el timer después de 10 segundos
@@ -68,7 +67,7 @@ class _HomeState extends State<Home> {
           ),
           AnimatedContainer( // Cuadrado animado
             duration: const Duration(seconds: 5), // Duración de la animación
-            color: _colorCuadrado.withOpacity(0.3), // Color del cuadrado con opacidad
+            color: _colorCuadrado.withOpacity(0.6), // Color del cuadrado con opacidad
             width: double.infinity,
             height: double.infinity,
             child: Column(

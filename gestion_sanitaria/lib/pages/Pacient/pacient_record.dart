@@ -116,7 +116,9 @@ class PacientRecord extends StatelessWidget {
               controllers[3].text,
               controllers[4].text,
             );
-            controllers.forEach((controller) => controller.clear());
+            for (var controller in controllers) {
+              controller.clear();
+            }
             break;
           case 1:
             Navigator.push(

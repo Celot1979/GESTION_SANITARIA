@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
    // Agregado para definir la variable de texto
    String errorMessage = ""; // Variable de texto
    int _selectedIndex = 0; // Inicializa el índice seleccionado
-   Color _colorCuadrado = Colors.yellow; // Color inicial del cuadrado
+   Color _colorCuadrado = Colors.blue; // Color inicial del cuadrado
 
   @override
   void initState() {
@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
       // Lógica para cambiar el color gradualmente
       setState(() {
         // Cambia el color aquí para ir de amarillo a rojo
-        _colorCuadrado = Color.lerp(const Color.fromARGB(255, 137, 106, 240), const Color.fromARGB(255, 226, 84, 22), timer.tick / 10) ?? const Color.fromARGB(255, 227, 100, 91);
+        _colorCuadrado = Color.lerp(const Color.fromARGB(255, 112, 108, 235), const Color.fromARGB(255, 4, 27, 89), timer.tick / 10) ?? const Color.fromARGB(255, 10, 6, 84);
       });
       if (timer.tick >= 10) {
         timer.cancel(); // Detiene el timer después de 10 segundos

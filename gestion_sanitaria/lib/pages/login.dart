@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestion_sanitaria/pages/inicio_app.dart';
 import 'package:gestion_sanitaria/pages/map.dart';
 import 'package:gestion_sanitaria/pages/Pacient/pacient_record.dart';
 import 'package:gestion_sanitaria/servicies/login.dart';
@@ -19,12 +20,25 @@ class _LoginState extends State<Login> {
     setState(() {
       _selectedIndex = index;
     });
-    // Aquí puedes agregar la lógica para navegar a las diferentes páginas
-    if (index == 0) {
-      // Navegar a la página de registro de paciente
-    } else if (index == 1) {
-      // Navegar a la página de inicio
+    _navigateToPage(index);
+  }
+
+  void _navigateToPage(int index) {
+    Widget page;
+    switch (index) {
+      case 0:
+        page = const PacientRecord();
+        break;
+      case 1:
+        page = const Home();
+        break;
+      default:
+        return;
     }
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => page),
+    );
   }
 
   @override
@@ -62,17 +76,7 @@ class _LoginState extends State<Login> {
         backgroundColor: Colors.blue, // Corregido el nombre del parámetro
         selectedItemColor: const Color.fromARGB(255, 187, 208, 218), // Color del ítem seleccionado
         unselectedItemColor: Colors.white, 
-        onTap: (index) {
-          _onItemTapped(index);
-          if (index == 0) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const PacientRecord()), // Llama a PacientRecord
-            );
-          } else if (index == 1) {
-            Navigator.pushNamed(context, '/'); // Navega a la página HOME
-          }
-        },
+        onTap: _onItemTapped,
       ),
     );
   }

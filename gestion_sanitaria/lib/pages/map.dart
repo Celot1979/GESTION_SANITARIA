@@ -20,37 +20,38 @@ class MapWidget extends StatelessWidget {
       );
     }
 
+    void handleMouseHover(Offset localPosition) {
+      final habitaciones = [
+        {'coords': [3.75, 150, 590, 694], 'numero': '1'},
+        {'coords': [3.75, 150, 480, 580], 'numero': '2'},
+        {'coords': [120, 190, 22.4, 140], 'numero': '6'},
+        {'coords': [3.75, 150, 295, 406], 'numero': '3'},
+        {'coords': [3.75, 150, 175, 289], 'numero': '4'},
+        {'coords': [15, 90, 24, 140], 'numero': '5'},
+      ];
+
+      for (var habitacion in habitaciones) {
+        if (roomChecker.isInRoom(
+          localPosition,
+          (habitacion['coords'] as List)[0],
+          (habitacion['coords'] as List)[1],
+          (habitacion['coords'] as List)[2],
+          (habitacion['coords'] as List)[3],
+          int.parse(habitacion['numero'] as String),
+        )) {
+          print('Ratón sobre Habitación ${habitacion['numero']}');
+          showRoomDialog(habitacion['numero'] as String);
+          break;
+        }
+      }
+    }
+
     return Center(
       child: Container(
         child: Stack(
           children: [
             MouseRegion(
-              onHover: (event) {
-                if (roomChecker.isInRoom(event.localPosition, 3.75, 150, 590, 694, 1)) {
-                  print('Ratón sobre Habitación 1');
-                  showRoomDialog('1');
-                }
-                if (roomChecker.isInRoom(event.localPosition, 3.75, 150, 480, 580, 2)) {
-                  print('Ratón sobre Habitación 2');
-                  showRoomDialog('2');
-                }
-                if (roomChecker.isInRoom(event.localPosition, 120, 190, 22.4, 140, 6)) {
-                  print('Ratón sobre Habitación 6');
-                  showRoomDialog('6');
-                }
-                if (roomChecker.isInRoom(event.localPosition, 3.75, 150, 295, 406, 3)) {
-                  print('Ratón sobre Habitación 3');
-                  showRoomDialog('3');
-                }
-                if (roomChecker.isInRoom(event.localPosition, 3.75, 150, 175, 289, 4)) {
-                  print('Ratón sobre Habitación 4');
-                  showRoomDialog('4');
-                }
-                if (roomChecker.isInRoom(event.localPosition, 15, 90, 24, 140, 5)) {
-                  print('Ratón sobre Habitación 5');
-                  showRoomDialog('5');
-                }
-              },
+              onHover: (event) => handleMouseHover(event.localPosition),
               child: Image.network('https://i.ibb.co/7XZvmGc/plano-Editado.png'),
             ),
             /*Aquí estaba la parte del código que nos dibujaba los cuadrados encima del croquis.*/

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestion_sanitaria/servicies/firebase_servicie.dart';
 import 'package:gestion_sanitaria/widgets/custom_textfield.dart';
 import 'package:gestion_sanitaria/widgets/custom_app_bar.dart';
-//import 'package:gestion_sanitaria/widgets/custom_button.dart';
+
 
 class EditNamePage extends StatefulWidget {
   const EditNamePage({

@@ -1,4 +1,4 @@
-# gestion_sanitaria
+# Gestion_sanitaria
 
 En este proyecto damos solución informática a un centro sanitario. Consta de 2 partes.
 1º. Gestión de empleados (Registrar nuevos empleados, editar, actualizar y borrar.)

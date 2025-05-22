@@ -1,16 +1,10 @@
 # gestion_sanitaria
 
-A new Flutter project.
+En este proyecto damos solución informática a un centro sanitario. Consta de 2 partes.
+1º. Gestión de empleados (Registrar nuevos empleados, editar, actualizar y borrar.)
+2º. Una vez verificado el perfil del empleado (usario y contraseña), puede gestionar los empfermos por camas de la unidad hospitalaria. 
+Conociendo el nombre el enfermo, su situación de ingreso, medicación , etc.
 
-## Getting Started
+LA idea es que el usario al pasar el ratón por encima de la cama, obtenga toda la informción. 
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+El proyecto aún se está actualizando, poniendo en breves alarmas en las horas para saber cuando le toca la medicación.
